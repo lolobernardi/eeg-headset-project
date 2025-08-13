@@ -69,7 +69,5 @@ void ADS1299_DeactivateChannel(uint8_t channel);
  */
 void ADS1299_WriteDefaultChannelSettings(void);
 
-/* Compatibility wrapper for existing code */
-static inline void Drv_ADS1299_initialize(void) { ADS1299_Init(); }
 
 #endif /* ADS1299_DRIVER_H_ */

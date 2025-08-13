@@ -15,6 +15,7 @@
 
 #include "board.h"
 #include "app.h"
+#include "ADS1299_Driver.h"
 #include "ads1299_test.h"
 
 /*******************************************************************************
@@ -37,9 +38,9 @@ int main(void)
 
     /* Init board hardware. */
     BOARD_InitHardware();
-    Drv_ADS1299_initialize();
-    ADS1299_RunRegisterTest();
+    ADS1299_Init();
 
+    ADS1299_RunRegisterTest();
 
     /* Add user custom codes below */
     while (1)

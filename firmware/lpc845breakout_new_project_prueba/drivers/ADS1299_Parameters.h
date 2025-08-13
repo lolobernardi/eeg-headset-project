@@ -30,14 +30,16 @@
 
 
 //ADS1299 SPI Command Definition Byte Assignments
-#define _WAKEUP 0x02 // Wake-up from standby mode
-#define _STANDBY 0x04 // Enter Standby mode
-#define _RESET 0x06 // Reset the device registers to default
-#define _START 0x08 // Start and restart (synchronize) conversions
-#define _STOP 0x0A // Stop conversion
-#define _RDATAC 0x10 // Enable Read Data Continuous mode (default mode at power-up)
-#define _SDATAC 0x11 // Stop Read Data Continuous mode
-#define _RDATA 0x12 // Read data by command; supports multiple read back
+#define _WAKEUP 0x02 	// Wake-up from standby mode
+#define _STANDBY 0x04 	// Enter Standby mode
+#define _RESET 0x06 	// Reset the device registers to default
+#define _START 0x08 	// Start and restart (synchronize) conversions
+#define _RREG 0x20  	// ADS waits for 001rrrrr = 0x20 | _adress for reading registers
+#define _WREG 0x40 		// ADS waits for 010rrrrr = 0x40 | _adress for writing registers
+#define _STOP 0x0A 		// Stop conversion
+#define _RDATAC 0x10 	// Enable Read Data Continuous mode (default mode at power-up)
+#define _SDATAC 0x11 	// Stop Read Data Continuous mode
+#define _RDATA 0x12 	// Read data by command; supports multiple read back
 
 //ASD1299 Register Addresses
 #define ADS_ID	0x3E	// product ID for ADS1299

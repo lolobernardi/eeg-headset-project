@@ -5,16 +5,6 @@
 #include "fsl_clock.h"
 #include "board.h"
 
-static inline void delay_ms(uint32_t ms)
-{
-    SDK_DelayAtLeastUs(ms * 1000U, SystemCoreClock);
-}
-
-static inline void delay_us(uint32_t us)
-{
-    SDK_DelayAtLeastUs(us, SystemCoreClock);
-}
-
 static uint8_t numChannels;
 static uint8_t defaultChannelSettings[6];
 static uint8_t channelSettings[8][6];
@@ -24,6 +14,16 @@ static bool useSRB2[8];
 #define ADS1299_SPI_BASE     SPI0
 #define ADS1299_SPI_BAUDRATE 1000000U
 #define ADS1299_SPI_SSEL     kSPI_Ssel0Assert
+
+static inline void delay_ms(uint32_t ms)
+{
+    SDK_DelayAtLeastUs(ms * 1000U, SystemCoreClock);
+}
+
+static inline void delay_us(uint32_t us)
+{
+    SDK_DelayAtLeastUs(us, SystemCoreClock);
+}
 
 static void ADS1299_InitPins(void)
 {
@@ -137,8 +137,8 @@ void ADS1299_Init(void)
     defaultChannelSettings[POWER_DOWN] = NO;
     defaultChannelSettings[GAIN_SET] = ADS_GAIN24;
     defaultChannelSettings[INPUT_TYPE_SET] = ADSINPUT_NORMAL;
-    defaultChannelSettings[BIAS_SET] = YES;
-    defaultChannelSettings[SRB2_SET] = YES;
+    defaultChannelSettings[BIAS_SET] = NO;
+    defaultChannelSettings[SRB2_SET] = NO;
     defaultChannelSettings[SRB1_SET] = NO;
 
     for (uint8_t i = 0; i < numChannels; ++i)
@@ -152,7 +152,7 @@ void ADS1299_Init(void)
     }
 
     ADS1299_WriteDefaultChannelSettings();
-    ADS1299_WriteRegister(CONFIG1, 0x90 | SAMPLE_RATE_2kHZ);
+    ADS1299_WriteRegister(CONFIG1, 0x90 | SAMPLE_RATE_250HZ);
     ADS1299_WriteRegister(LOFF, 0x02);
 }
 
@@ -175,10 +175,10 @@ uint8_t ADS1299_ReadRegister(uint8_t reg)
     uint8_t value;
     ADS1299_csLow();
     ADS1299_xfer(_RREG | reg);
-    ADS1299_xfer(0x00);
+    ADS1299_xfer(0x00);		// Quantity of registers to read minus one.
     value = ADS1299_xfer(0x00);
+    delay_us(10); 			// After the serial communication is finished, always wait four or more tCLK cycles before taking CS high
     ADS1299_csHigh();
-    delay_us(2);
     return value;
 }
 
@@ -188,8 +188,8 @@ void ADS1299_WriteRegister(uint8_t reg, uint8_t value)
     ADS1299_xfer(_WREG | reg);
     ADS1299_xfer(0x00);
     ADS1299_xfer(value);
+    delay_us(10);
     ADS1299_csHigh();
-    delay_us(2);
 }
 
 bool ADS1299_IsDataReady(void)
