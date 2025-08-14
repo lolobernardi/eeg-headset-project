@@ -42,6 +42,7 @@ int main(void)
 
     ADS1299_RunRegisterTest();
 
+
     /* Add user custom codes below */
     while (1)
     {
