@@ -192,6 +192,13 @@ void ADS1299_WriteRegister(uint8_t reg, uint8_t value)
     ADS1299_csHigh();
 }
 
+void ADS1299_SetSampleRate(uint8_t rate)
+{
+    uint8_t config1 = ADS1299_ReadRegister(CONFIG1);
+    config1 = (config1 & 0xF8U) | (rate & 0x07U);
+    ADS1299_WriteRegister(CONFIG1, config1);
+}
+
 bool ADS1299_IsDataReady(void)
 {
     return GPIO_PinRead(GPIO, ADS_DRDY_PORT, ADS_DRDY_PIN) == 0U;
@@ -232,11 +239,48 @@ uint8_t ADS1299_GetDeviceID(void)
     return ADS1299_ReadRegister(ID_REG);
 }
 
-void ADS1299_DeactivateChannel(uint8_t channel)
+void ADS1299_SetChannelGain(uint8_t channel, uint8_t gain)
 {
-    if (channel < 1U || channel > 8U)
+    if (channel < 1U || channel > numChannels)
     {
         return;
     }
+    channelSettings[channel - 1U][GAIN_SET] = gain & 0x70U;
+    uint8_t value = 0U;
+    value |= (channelSettings[channel - 1U][POWER_DOWN] & 0x01U) << 7;
+    value |= channelSettings[channel - 1U][GAIN_SET];
+    if (channelSettings[channel - 1U][SRB2_SET] == YES)
+    {
+        value |= 0x08U;
+    }
+    value |= channelSettings[channel - 1U][INPUT_TYPE_SET] & 0x07U;
+    ADS1299_WriteRegister(CH1SET + (channel - 1U), value);
+}
+
+void ADS1299_DeactivateChannel(uint8_t channel)
+{
+    if (channel < 1U || channel > numChannels)
+    {
+        return;
+    }
+    channelSettings[channel - 1U][POWER_DOWN] = YES;
     ADS1299_WriteRegister(CH1SET + (channel - 1U), 0x81U);
+}
+
+void ADS1299_ActivateChannel(uint8_t channel)
+{
+    if (channel < 1U || channel > numChannels)
+    {
+        return;
+    }
+    channelSettings[channel - 1U][POWER_DOWN] = NO;
+    uint8_t value = 0U;
+    value |= (channelSettings[channel - 1U][POWER_DOWN] & 0x01U) << 7;
+    value |= channelSettings[channel - 1U][GAIN_SET] & 0x70U;
+    if (channelSettings[channel - 1U][SRB2_SET] == YES)
+    {
+        value |= 0x08U;
+    }
+    value |= channelSettings[channel - 1U][INPUT_TYPE_SET] & 0x07U;
+    ADS1299_WriteRegister(CH1SET + (channel - 1U), value);
 }

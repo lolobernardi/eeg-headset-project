@@ -26,6 +26,11 @@ void ADS1299_Start(void);
 void ADS1299_Stop(void);
 
 /**
+ * @brief Reset the ADS1299 device.
+ */
+void ADS1299_Reset(void);
+
+/**
  * @brief Read a register from the ADS1299.
  * @param reg Register address.
  * @return Register value.
@@ -38,6 +43,19 @@ uint8_t ADS1299_ReadRegister(uint8_t reg);
  * @param value Byte to write.
  */
 void ADS1299_WriteRegister(uint8_t reg, uint8_t value);
+
+/**
+ * @brief Configure sampling rate in CONFIG1 register.
+ * @param rate One of SAMPLE_RATE_* values.
+ */
+void ADS1299_SetSampleRate(uint8_t rate);
+
+/**
+ * @brief Set the PGA gain for a channel.
+ * @param channel Channel number 1-8.
+ * @param gain Use ADS_GAINxx values.
+ */
+void ADS1299_SetChannelGain(uint8_t channel, uint8_t gain);
 
 /**
  * @brief Check if new data are available.
@@ -63,6 +81,12 @@ uint8_t ADS1299_GetDeviceID(void);
  * @param channel Channel number 1-8.
  */
 void ADS1299_DeactivateChannel(uint8_t channel);
+
+/**
+ * @brief Activate a channel using current settings.
+ * @param channel Channel number 1-8.
+ */
+void ADS1299_ActivateChannel(uint8_t channel);
 
 /**
  * @brief Write default channel configuration to device.
