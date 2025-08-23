@@ -1,0 +1,17 @@
+"Task Aware Debugger for GDB" version 24.12.0 (202407110909)
+Copyright 2016-2023 NXP
+==================================
+17:05:26.447 INFO: [ZephyrRTOS] .config file could not be read [C:\Users\Usuario\Desktop\ESCRITORIO\Facultad\Tesis\Proyecto_Casco_EEG\eeg-headset-project\firmware\lpc845breakout_spi_polling_master\Debug\.config (El sistema no puede encontrar el archivo especificado)]
+17:05:26.448 INFO: [TadModel] DSF session ID 47 has started.
+17:05:34.29 INFO: [TadState] TAD state changed: DEBUG_STARTED -> DEBUG_INIT_0 (RESUMED, USER_REQUEST)
+17:05:34.59 INFO: [TadState] TAD state changed: DEBUG_INIT_0 -> DEBUG_INIT_1 (SUSPENDED, SIGNAL)
+17:05:34.766 INFO: [TadState] TAD state changed: DEBUG_INIT_1 -> DEBUG_SUSPENDED (RESUMED, USER_REQUEST)
+17:05:34.874 INFO: [TadState] TAD state changed: DEBUG_SUSPENDED -> DEBUG_SUSPENDED (SUSPENDED, BREAKPOINT)
+17:05:38.41 INFO: [TadState] TAD state changed: DEBUG_SUSPENDED -> DEBUG_RESUMED (RESUMED, USER_REQUEST)
+17:05:38.462 INFO: [TadState] TAD state changed: DEBUG_RESUMED -> READY (SUSPENDED, BREAKPOINT)
+17:05:39.224 INFO: [TadState] TAD state changed: READY -> DEBUG_RESUMED (SUSPENDED, SIGNAL)
+17:05:39.475 INFO: [TadState] TAD state changed: DEBUG_RESUMED -> READY (SUSPENDED, SIGNAL)
+17:05:40.266 INFO: [TadState] TAD state changed: READY -> DEBUG_RESUMED (SUSPENDED, SIGNAL)
+17:05:40.441 INFO: [TadState] TAD state changed: DEBUG_RESUMED -> READY (SUSPENDED, SIGNAL)
+17:05:40.695 INFO: [TadState] TAD state changed: READY -> DEBUG_RESUMED (SUSPENDED, SIGNAL)
+17:05:45.622 INFO: [TadModel] DSF session ID 47 has ended.

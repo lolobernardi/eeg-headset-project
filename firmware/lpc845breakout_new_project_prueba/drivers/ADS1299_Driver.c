@@ -12,8 +12,8 @@ static bool useInBias[8];
 static bool useSRB2[8];
 
 #define ADS1299_SPI_BASE     SPI0
-#define ADS1299_SPI_BAUDRATE 1000000U
-#define ADS1299_SPI_SSEL     kSPI_Ssel0Assert
+#define ADS1299_SPI_BAUDRATE 500000U //1000000U
+#define ADS1299_SPI_SSEL     kSPI_SselDeAssertAll
 
 static inline void delay_ms(uint32_t ms)
 {
@@ -43,25 +43,63 @@ static void ADS1299_InitPins(void)
     };
 
     GPIO_PortInit(GPIO, ADS_DRDY_PORT);
-    GPIO_PortInit(GPIO, ADS_RST_PORT);
+    /*GPIO_PortInit(GPIO, ADS_RST_PORT);
     GPIO_PortInit(GPIO, ADS_START_PORT);
-    GPIO_PortInit(GPIO, BOARD_ADS_PORT);
+    GPIO_PortInit(GPIO, BOARD_ADS_PORT);*/
 
     GPIO_PinInit(GPIO, BOARD_ADS_PORT, BOARD_ADS_PIN, &output_high);
     GPIO_PinInit(GPIO, ADS_RST_PORT, ADS_RST_PIN, &output_high);
+    GPIO_PinInit(GPIO, PWDN_ADS_PORT, PWDN_ADS_PIN, &output_high);
     GPIO_PinInit(GPIO, ADS_START_PORT, ADS_START_PIN, &output_low);
+
     GPIO_PinInit(GPIO, ADS_DRDY_PORT, ADS_DRDY_PIN, &input_config);
 }
 
 static void ADS1299_InitSPI(void)
 {
-    spi_master_config_t spiConfig;
+    spi_master_config_t spiConfig = {0};
+    uint32_t srcFreq              = 0U ;
     SPI_MasterGetDefaultConfig(&spiConfig);
-    spiConfig.baudRate_Bps = ADS1299_SPI_BAUDRATE;
-    spiConfig.sselNumber = ADS1299_SPI_SSEL;
-    SPI_MasterInit(ADS1299_SPI_BASE, &spiConfig, CLOCK_GetFreq(kCLOCK_MainClk));
+    spiConfig.baudRate_Bps 		= ADS1299_SPI_BAUDRATE;
+    spiConfig.clockPolarity     = kSPI_ClockPolarityActiveHigh;  // CPOL=0
+    spiConfig.clockPhase        = kSPI_ClockPhaseSecondEdge;     // CPHA=1
+    spiConfig.direction    		= kSPI_MsbFirst;
+    spiConfig.sselNumber 		= ADS1299_SPI_SSEL;
+    srcFreq						= CLOCK_GetFreq(kCLOCK_MainClk);
+    SPI_MasterInit(ADS1299_SPI_BASE, &spiConfig, srcFreq);
+}
+#define SPI_TIMEOUT_LOOP   100000u             // ajustá si hace falta
+
+static inline void spi_flush(void)
+{
+    // Vacía RX y limpia flags de error para arrancar “limpio”
+    volatile uint32_t tmp;
+    while (ADS1299_SPI_BASE->STAT & SPI_STAT_RXRDY_MASK) { tmp = ADS1299_SPI_BASE->RXDAT; (void)tmp; }
+    ADS1299_SPI_BASE->STAT = SPI_STAT_RXOV_MASK | SPI_STAT_TXUR_MASK; // clear overrun/underrun si estaban
 }
 
+// Transfiere 1 byte y devuelve el recibido. Usa polling (bloqueante) con timeout.
+static inline uint8_t spi_rw_byte(uint8_t out)
+{
+    uint32_t wait = SPI_TIMEOUT_LOOP;
+
+    // Espera espacio en TX FIFO
+    while (((ADS1299_SPI_BASE->STAT & SPI_STAT_TXRDY_MASK) == 0u) && (--wait)) { }
+    if (!wait) { return 0xFF; } // timeout TX
+
+    // Escribí el dato. Usamos TXDAT (no TXDATCTL) y controlamos CS por GPIO.
+    ADS1299_SPI_BASE->TXDAT = out;
+
+    // Espera dato en RX (transacción full‑duplex)
+    wait = SPI_TIMEOUT_LOOP;
+    while (((ADS1299_SPI_BASE->STAT & SPI_STAT_RXRDY_MASK) == 0u) && (--wait)) { }
+    if (!wait) {
+        // opcional: marcá error o reintento
+        return 0xFF; // timeout RX
+    }
+
+    return (uint8_t)(ADS1299_SPI_BASE->RXDAT & 0xFFu);
+}
 static inline void ADS1299_csLow(void)
 {
     GPIO_PinWrite(GPIO, BOARD_ADS_PORT, BOARD_ADS_PIN, 0U);
@@ -75,12 +113,17 @@ static inline void ADS1299_csHigh(void)
 static uint8_t ADS1299_xfer(uint8_t data)
 {
     uint8_t rx = 0U;
+    spi_flush();
     spi_transfer_t xfer = {0};
     xfer.txData = &data;
     xfer.rxData = &rx;
     xfer.dataSize = 1;
-    xfer.configFlags = kSPI_EndOfTransfer;
+    xfer.configFlags = 0;//kSPI_EndOfTransfer;
+
     SPI_MasterTransferBlocking(ADS1299_SPI_BASE, &xfer);
+
+    //rx = spi_rw_byte(data);
+
     return rx;
 }
 
@@ -88,19 +131,37 @@ static void ADS1299_SDATAC(void)
 {
     ADS1299_csLow();
     ADS1299_xfer(_SDATAC);
+    delay_us(10);
     ADS1299_csHigh();
-    delay_us(3);
+    delay_us(10);
 }
 
 void ADS1299_Reset(void)
 {
-    ADS1299_csLow();
+	/*
+	ADS1299_csLow();
+    delay_ms(1500);
+    ADS1299_csHigh();*/
+
+    /*ADS1299_csLow();
     ADS1299_xfer(_RESET);
+    delay_us(10);
     ADS1299_csHigh();
     delay_us(12);
-    ADS1299_SDATAC();
-}
+    ADS1299_SDATAC();*/
 
+}
+bool prueba_ADS_SPI(void)
+{
+	uint8_t xfer = 0x25;
+
+	uint8_t received = ADS1299_xfer(xfer);
+
+	if(xfer == received)
+		return true;
+	else return false;
+
+}
 void ADS1299_WriteDefaultChannelSettings(void)
 {
     for (uint8_t ch = 1; ch <= numChannels; ++ch)
@@ -126,7 +187,7 @@ void ADS1299_Init(void)
     delay_ms(50);
 
     GPIO_PinWrite(GPIO, ADS_RST_PORT, ADS_RST_PIN, 0U);
-    delay_us(4);
+    delay_us(10);
     GPIO_PinWrite(GPIO, ADS_RST_PORT, ADS_RST_PIN, 1U);
     delay_us(20);
 
@@ -150,16 +211,17 @@ void ADS1299_Init(void)
         useInBias[i] = true;
         useSRB2[i] = true;
     }
-
+/*
     ADS1299_WriteDefaultChannelSettings();
     ADS1299_WriteRegister(CONFIG1, 0x90 | SAMPLE_RATE_250HZ);
-    ADS1299_WriteRegister(LOFF, 0x02);
+    ADS1299_WriteRegister(LOFF, 0x02);*/
 }
 
 void ADS1299_Start(void)
 {
     ADS1299_csLow();
     ADS1299_xfer(_START);
+    delay_us(10);
     ADS1299_csHigh();
 }
 
@@ -167,6 +229,7 @@ void ADS1299_Stop(void)
 {
     ADS1299_csLow();
     ADS1299_xfer(_STOP);
+    delay_us(10);
     ADS1299_csHigh();
 }
 
@@ -174,6 +237,7 @@ uint8_t ADS1299_ReadRegister(uint8_t reg)
 {
     uint8_t value;
     ADS1299_csLow();
+    delay_us(5);
     ADS1299_xfer(_RREG | reg);
     ADS1299_xfer(0x00);		// Quantity of registers to read minus one.
     value = ADS1299_xfer(0x00);

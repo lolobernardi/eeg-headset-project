@@ -10,6 +10,9 @@
 #include <stdbool.h>
 #include "ADS1299_Parameters.h"
 
+
+bool prueba_ADS_SPI(void);
+
 /**
  * @brief Initialize GPIOs, SPI and the ADS1299 device.
  */

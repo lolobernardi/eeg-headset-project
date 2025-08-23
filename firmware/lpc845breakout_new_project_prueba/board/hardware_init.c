@@ -13,7 +13,21 @@
 /*${function:start}*/
 void BOARD_InitHardware(void)
 {
+    /* Initialize the pins. */
     BOARD_InitBootPins();
-    BOARD_InitBootClocks();
+
+    /* Enable clock to 30MHz. */
+    BOARD_BootClockFRO30M();
+
+    /* Select the main clock as source clock of USART0. */
+    CLOCK_Select(kUART0_Clk_From_MainClk);
+
+    /* Turn on LED RED */
+    LED_RED_INIT(LOGIC_LED_ON);
+
+
+
+    //BOARD_InitBootPins();
+    //BOARD_InitBootClocks();
 }
 /*${function:end}*/

@@ -9,24 +9,20 @@
 #define ADS1299_PARAMETERS_H_
 
 //PIN CONNECTIONS
-#define ADS_DRDY_PIN	12	// ADS data ready pin
-#define ADS_DRDY_PORT	2	// ADS data ready port
+#define ADS_DRDY_PIN	8	// ADS data ready pin
+#define ADS_DRDY_PORT	0	// ADS data ready port
 
-#define ADS_RST_PIN	    8	// ADS reset pin
-#define ADS_RST_PORT	2	// ADS reset port
+#define ADS_RST_PIN	    9	// ADS reset pin
+#define ADS_RST_PORT	0	// ADS reset port
 
-#define ADS_START_PIN	9	// ADS reset pin
-#define ADS_START_PORT	2	// ADS reset port
+#define ADS_START_PIN	10	// ADS start pin
+#define ADS_START_PORT	0	// ADS start port
 
-#define BOARD_ADS_PIN	16 //Master ADS chip select pin
-#define BOARD_ADS_PORT  0  //Master ADS chip select port
+#define BOARD_ADS_PIN	16 	//Master ADS chip select pin
+#define BOARD_ADS_PORT  0  	//Master ADS chip select port
 
-#define SLAVE_ADS_PIN	28 // Slave ADS chip select pin
-#define SLAVE_ADS_PORT  1  //Slave ADS chip select port
-
-#define BOARD_ADS	1 	// ADS chip select
-#define SLAVE_ADS	2   // ADS Daisy chip select
-#define BOTH_ADS	3	// Slave Select Both ADS chips
+#define PWDN_ADS_PIN	11 	//ADS PWDN pin
+#define PWDN_ADS_PORT   0  	//ADS PWDN port
 
 
 //ADS1299 SPI Command Definition Byte Assignments
