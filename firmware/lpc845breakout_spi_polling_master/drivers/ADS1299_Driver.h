@@ -10,7 +10,17 @@
 #include <stdbool.h>
 #include "ADS1299_Parameters.h"
 
+void ADS1299_StartStreaming(void);
 
+void ADS1299_UpdateChannelData(void);
+
+void ADS1299_SendChannelDataUART(void);
+
+void ADS1299_SendChannelDataOpenBCI(void);
+
+void ADS1299_copyLatest(int32_t out[8]);
+
+bool ADS1299_TestChannelRegisters(void);
 /**
  * @brief Initialize GPIOs, SPI and the ADS1299 device.
  */

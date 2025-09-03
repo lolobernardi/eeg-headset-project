@@ -1,0 +1,6 @@
+"Task Aware Debugger for GDB" version 24.12.0 (202407110909)
+Copyright 2016-2023 NXP
+==================================
+10:21:41.121 INFO: [ZephyrRTOS] .config file could not be read [C:\Users\Usuario\Desktop\ESCRITORIO\Facultad\Tesis\Proyecto_Casco_EEG\eeg-headset-project\firmware\lpc845breakout_spi_polling_master\Debug\.config (El sistema no puede encontrar el archivo especificado)]
+10:21:41.121 INFO: [TadModel] DSF session ID 14 has started.
+10:21:59.155 INFO: [TadModel] DSF session ID 14 has ended.

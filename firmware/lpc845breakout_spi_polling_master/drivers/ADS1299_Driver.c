@@ -5,12 +5,16 @@
 #include "fsl_clock.h"
 #include "board.h"
 #include "fsl_debug_console.h"
+#include "fsl_usart.h"
+
 
 static uint8_t numChannels;
 static uint8_t defaultChannelSettings[6];
 static uint8_t channelSettings[8][6];
 static bool useInBias[8];
 static bool useSRB2[8];
+static volatile int32_t channelData[8];
+static uint32_t status;
 
 #define ADS1299_SPI_BASE     SPI0
 #define ADS1299_SPI_BAUDRATE 500000U //1000000U
@@ -103,6 +107,17 @@ static void ADS1299_SDATAC(void)
     delay_us(10);
 }
 
+
+static void ADS1299_RDATAC(void)
+{
+    ADS1299_csLow();
+    ADS1299_xfer(_RDATAC);
+    delay_us(10);
+    ADS1299_csHigh();
+    delay_us(10);
+}
+
+
 void ADS1299_Reset(void)
 {
     ADS1299_csLow();
@@ -148,7 +163,7 @@ void ADS1299_Init(void)
 
     numChannels = 8;
     defaultChannelSettings[POWER_DOWN] = NO;
-    defaultChannelSettings[GAIN_SET] = ADS_GAIN24;
+    defaultChannelSettings[GAIN_SET] = ADS_GAIN01;
     defaultChannelSettings[INPUT_TYPE_SET] = ADSINPUT_NORMAL;
     defaultChannelSettings[BIAS_SET] = NO;
     defaultChannelSettings[SRB2_SET] = NO;
@@ -163,10 +178,21 @@ void ADS1299_Init(void)
         useInBias[i] = true;
         useSRB2[i] = true;
     }
-/*
+
+    channelSettings[7][INPUT_TYPE_SET] = ADSINPUT_TEMP;
+
     ADS1299_WriteDefaultChannelSettings();
-    ADS1299_WriteRegister(CONFIG1, 0x90 | SAMPLE_RATE_250HZ);
-    ADS1299_WriteRegister(LOFF, 0x02);*/
+    ADS1299_WriteRegister(CONFIG1, 0xD0 | SAMPLE_RATE_250HZ);
+    ADS1299_WriteRegister(LOFF, 0x02);
+    delay_us(10);
+}
+
+void ADS1299_StartStreaming(void)
+{
+	ADS1299_RDATAC();
+	delay_ms(1);
+	ADS1299_Start();
+	delay_ms(1);
 }
 
 void ADS1299_Start(void)
@@ -220,6 +246,66 @@ bool ADS1299_IsDataReady(void)
     return GPIO_PinRead(GPIO, ADS_DRDY_PORT, ADS_DRDY_PIN) == 0U;
 }
 
+void ADS1299_UpdateChannelData(void)
+{
+	while(!ADS1299_IsDataReady()){}
+	ADS1299_ReadData(&channelData[0], &status);
+}
+
+void ADS1299_copyLatest(int32_t out[8])
+{
+    memcpy(out, (const void*)channelData, sizeof(channelData));
+}
+
+/*void ADS1299_SendChannelDataOpenBCI(void)
+{
+	if(!isRunning) return;
+
+	//USART_WriteBlocking(USART0, (const uint8_t*)"HELLO\r\n", 7);
+	uint8_t packet[33];
+	uint8_t prueba = 0x31;
+	uint8_t  prueba2 = 0x30;
+	const uint8_t *ptr_packet = &packet[0];
+
+	packet[0] = Header;
+	packet[1] = sampleCnt++;
+	packet[32] = Footer;
+
+	for(uint8_t i = 2 ; i<26 ;i++)
+	{
+		if(sampleCnt < 126)
+			packet[i] = prueba;
+		else packet[i] = prueba2;
+	}
+	for(uint8_t i = 26 ; i<32 ;i++)
+	{
+		packet[i] = 0x00;
+	}
+
+	USART_WriteBlocking(USART0, ptr_packet, sizeof(packet));
+
+}
+*/
+/*
+void ADS1299_SendChannelDataUART(void)
+{
+	if(isRunning)
+	{
+		//PRINTF("\n\r SIZE OF CHANNELDATA: ");
+		//PRINTF("  0x%02X", sizeof(channelData));
+		//PRINTF("\r\r");
+
+		for(uint8_t i = 0 ; i<8 ; i++)
+			{
+		        if ((i & 0x07U) == 0U)
+		        {
+		            PRINTF("\n\r");
+		        }
+				PRINTF("  0x%02X", channelData[i]);
+			}
+	}
+}*/
+
 void ADS1299_ReadData(int32_t *channelData, uint32_t *status)
 {
     uint8_t buffer[27];
@@ -228,6 +314,7 @@ void ADS1299_ReadData(int32_t *channelData, uint32_t *status)
     {
         buffer[i] = ADS1299_xfer(0x00);
     }
+    delay_us(10);
     ADS1299_csHigh();
 
     if (status != NULL)
@@ -239,9 +326,10 @@ void ADS1299_ReadData(int32_t *channelData, uint32_t *status)
 
     for (uint8_t ch = 0; ch < 8; ++ch)
     {
-        uint32_t raw = ((uint32_t)buffer[3 + ch * 3] << 16) |
+        int32_t raw = ((uint32_t)buffer[3 + ch * 3] << 16) |
                        ((uint32_t)buffer[4 + ch * 3] << 8) |
                        buffer[5 + ch * 3];
+        // Completa con 0s o 1s para complemento a dos
         if (raw & 0x800000U)
         {
             raw |= 0xFF000000U;
@@ -300,3 +388,55 @@ void ADS1299_ActivateChannel(uint8_t channel)
     value |= channelSettings[channel - 1U][INPUT_TYPE_SET] & 0x07U;
     ADS1299_WriteRegister(CH1SET + (channel - 1U), value);
 }
+
+bool ADS1299_TestChannelRegisters(void)
+{
+    uint8_t ok = 1U;
+    const uint8_t n = numChannels;     // numChannels ya lo usás en tu código (1..8)
+    uint8_t original[8];
+
+    // 1) Salir de RDATAC para poder usar RREG/WREG sin interferencias
+    ADS1299_SDATAC();
+
+    // 2) Leer y guardar originales
+    for (uint8_t i = 0; i < n; i++)
+    {
+        original[i] = ADS1299_ReadRegister((uint8_t)(CH1SET + i));
+    }
+
+    // 3) Patrón de prueba #1: canal activo, ganancia 24, entradas cortocircuitadas (mux=SHORTED)
+    //    Bits CHnSET: [7]=PD, [6:4]=GAIN, [3]=SRB2, [2:0]=MUX
+    const uint8_t pat1 = (0U<<7) | (ADS_GAIN24) | (0U<<3) | (ADSINPUT_SHORTED & 0x07U);
+
+    for (uint8_t i = 0; i < n; i++)
+    {
+        ADS1299_WriteRegister((uint8_t)(CH1SET + i), pat1);
+        uint8_t rb = ADS1299_ReadRegister((uint8_t)(CH1SET + i));
+        if (rb != pat1) { ok = 0U; }
+    }
+
+    // 4) Patrón de prueba #2: canal apagado (PD=1), ganancia 6, entrada normal (mux=NORMAL)
+    const uint8_t pat2 = (1U<<7) | (ADS_GAIN06) | (0U<<3) | (ADSINPUT_NORMAL & 0x07U);
+
+    for (uint8_t i = 0; i < n; i++)
+    {
+        ADS1299_WriteRegister((uint8_t)(CH1SET + i), pat2);
+        uint8_t rb = ADS1299_ReadRegister((uint8_t)(CH1SET + i));
+        if (rb != pat2) { ok = 0U; }
+    }
+
+    // 5) Restaurar originales
+    for (uint8_t i = 0; i < n; i++)
+    {
+        ADS1299_WriteRegister((uint8_t)(CH1SET + i), original[i]);
+        uint8_t rb = ADS1299_ReadRegister((uint8_t)(CH1SET + i));
+        if (rb != original[i]) { ok = 0U; }
+    }
+
+    // 6) Volver a RDATAC si tu flujo normal lo usa
+    //ADS1299_SendCommand(_RDATAC);
+
+    return (ok != 0U);
+}
+
+
