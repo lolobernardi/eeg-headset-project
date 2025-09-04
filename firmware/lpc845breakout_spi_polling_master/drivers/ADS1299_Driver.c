@@ -8,7 +8,7 @@
 #include "fsl_usart.h"
 
 
-static uint8_t numChannels;
+static uint8_t numChannels = 8;
 static uint8_t defaultChannelSettings[6];
 static uint8_t channelSettings[8][6];
 static bool useInBias[8];
@@ -25,6 +25,30 @@ static inline void delay_ms(uint32_t ms)
 {
     SDK_DelayAtLeastUs(ms * 1000U, SystemCoreClock);
 }
+
+static inline void initializeDefaultChannelSettings(void)
+{
+    defaultChannelSettings[POWER_DOWN] = NO;
+    defaultChannelSettings[GAIN_SET] = ADS_GAIN12;
+    defaultChannelSettings[INPUT_TYPE_SET] = ADSINPUT_NORMAL;
+    defaultChannelSettings[BIAS_SET] = NO;
+    defaultChannelSettings[SRB2_SET] = NO;
+    defaultChannelSettings[SRB1_SET] = NO;
+}
+
+static inline void updateChannelSettingsToDefault(void)
+{
+    for (uint8_t i = 0; i < numChannels; ++i)
+    {
+        for (uint8_t j = 0; j < 6; ++j)
+        {
+            channelSettings[i][j] = defaultChannelSettings[j];
+        }
+        useInBias[i] = true;
+        useSRB2[i] = true;
+    }
+}
+
 
 static inline void delay_us(uint32_t us)
 {
@@ -129,7 +153,7 @@ void ADS1299_Reset(void)
 
 }
 
-void ADS1299_WriteDefaultChannelSettings(void)
+void ADS1299_WriteChannelSettings(void)
 {
     for (uint8_t ch = 1; ch <= numChannels; ++ch)
     {
@@ -146,6 +170,26 @@ void ADS1299_WriteDefaultChannelSettings(void)
     }
 }
 
+void ADS1299_WriteDefaultChannelSettings(void)
+{
+    updateChannelSettingsToDefault();
+    ADS1299_WriteChannelSettings();
+}
+
+/*void ADS1299_WriteOneChannelSettings(uint8_t channel)
+{
+    uint8_t value = 0;
+    value |= (channelSettings[channel - 1][POWER_DOWN] & 0x01U) << 7;
+    value |= channelSettings[channel - 1][GAIN_SET] & 0x70U;
+    if (channelSettings[channel - 1][SRB2_SET] == YES)
+    {
+        value |= 0x08U;
+    }
+    value |= channelSettings[channel - 1][INPUT_TYPE_SET] & 0x07U;
+
+    ADS1299_WriteRegister(CH1SET + (channel - 1), value);
+}*/
+
 void ADS1299_Init(void)
 {
     ADS1299_InitSPI();
@@ -161,27 +205,9 @@ void ADS1299_Init(void)
     ADS1299_Reset();
     delay_ms(20);
 
-    numChannels = 8;
-    defaultChannelSettings[POWER_DOWN] = NO;
-    defaultChannelSettings[GAIN_SET] = ADS_GAIN01;
-    defaultChannelSettings[INPUT_TYPE_SET] = ADSINPUT_NORMAL;
-    defaultChannelSettings[BIAS_SET] = NO;
-    defaultChannelSettings[SRB2_SET] = NO;
-    defaultChannelSettings[SRB1_SET] = NO;
-
-    for (uint8_t i = 0; i < numChannels; ++i)
-    {
-        for (uint8_t j = 0; j < 6; ++j)
-        {
-            channelSettings[i][j] = defaultChannelSettings[j];
-        }
-        useInBias[i] = true;
-        useSRB2[i] = true;
-    }
-
-    channelSettings[7][INPUT_TYPE_SET] = ADSINPUT_TEMP;
-
+    initializeDefaultChannelSettings();
     ADS1299_WriteDefaultChannelSettings();
+
     ADS1299_WriteRegister(CONFIG1, 0xD0 | SAMPLE_RATE_250HZ);
     ADS1299_WriteRegister(LOFF, 0x02);
     delay_us(10);
@@ -388,6 +414,40 @@ void ADS1299_ActivateChannel(uint8_t channel)
     value |= channelSettings[channel - 1U][INPUT_TYPE_SET] & 0x07U;
     ADS1299_WriteRegister(CH1SET + (channel - 1U), value);
 }
+
+void ADS1299_changeInputType(uint8_t inputCode)
+{
+	uint8_t i = 0; //loop counter
+	for(i=0; i<numChannels; i++)
+	{
+		channelSettings[i][INPUT_TYPE_SET] = inputCode;
+	}
+
+	ADS1299_WriteDefaultChannelSettings();
+}
+
+void ADS1299_configureInternalTestSignal(uint8_t amplitudeCode, uint8_t freqCode)
+{
+	uint8_t setting;
+
+	if(amplitudeCode == ADSTESTSIG_NOCHANGE)
+	{
+		amplitudeCode = ADS1299_ReadRegister(CONFIG2) & (0b00000100);
+	}
+
+	if(freqCode == ADSTESTSIG_NOCHANGE)
+	{
+		freqCode = ADS1299_ReadRegister(CONFIG2) & (0b00000011);
+	}
+
+	freqCode &= 0b00000011;  		//only the last two bits are used
+	amplitudeCode &= 0b00000100;  	//only this bit is used
+	setting = 0b11010000 | freqCode | amplitudeCode;  //compose the code
+
+	ADS1299_WriteRegister(CONFIG2, setting);
+	delay_ms(1);
+}
+
 
 bool ADS1299_TestChannelRegisters(void)
 {

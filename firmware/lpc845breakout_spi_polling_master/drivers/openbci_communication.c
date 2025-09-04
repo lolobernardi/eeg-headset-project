@@ -166,7 +166,7 @@ void HandleOpenBCICommand(uint8_t command)
 					break;
 
 		/* Test signal control commands  */
-/*			case '0': //Connect to internal GND (VDD - VSS)
+			case '0': //Connect to internal GND (VDD - VSS)
 					AllChannelsToTestCondition(ADSINPUT_SHORTED, ADSTESTSIG_NOCHANGE, ADSTESTSIG_NOCHANGE);
 					break;
 			case '-': //Connect to test signal 1xAmplitude, slow pulse
@@ -184,7 +184,7 @@ void HandleOpenBCICommand(uint8_t command)
 			case ']': //Connect to test signal 2xAmplitude, fast pulse
 					AllChannelsToTestCondition(ADSINPUT_TESTSIG, ADSTESTSIG_AMP_2X, ADSTESTSIG_PULSE_FAST);
 					break;
-*/
+
 		/* Channel Setting Commands  */
 
 			case 'x': // enters Channel Settings mode
@@ -227,21 +227,21 @@ void HandleOpenBCICommand(uint8_t command)
 					{
 						HC05_SendString("Updating channels sampling rate to 1kHz\r\n");
 					}
-					//UpdateFrequency(SAMPLE_RATE_1kHZ);
+					UpdateFrequency(SAMPLE_RATE_1kHZ);
 					break;
 			case 'F':
 					if(!isRunning)
 					{
 						HC05_SendString("Updating channels sampling rate to 500Hz\r\n");
 					}
-					//UpdateFrequency(SAMPLE_RATE_500HZ);
+					UpdateFrequency(SAMPLE_RATE_500HZ);
 					break;
 			case 'G':
 					if(!isRunning)
 					{
 						HC05_SendString("Updating channels sampling rate to 250Hz\r\n");
 					}
-					//UpdateFrequency(SAMPLE_RATE_250HZ);
+					UpdateFrequency(SAMPLE_RATE_250HZ);
 					break;
 
 			/* Lead-off impedance detection commands */
@@ -357,7 +357,7 @@ bool StopRunning()
  * @param OUT_TYPE Define if quiet or how many channels are active:  OUTPUT_NOTHING, OUTPUT_8_CHAN, OUTPUT_16_CHAN
  * @return HIGH if the device is running, LOW if not
  */
-bool StartRunning(int N_CHANNELS)
+bool StartRunning()
 {
 	if(!isRunning)
 	{
@@ -390,7 +390,7 @@ void ChangeChannelState(uint8_t channel, uint8_t start)
 
 	if(isRunning_when_called)
 	{
-		StartRunning(cur_outputType); //restart, if it was running before
+		StartRunning(); //restart, if it was running before
 	}
 }
 
@@ -400,28 +400,30 @@ void ChangeChannelState(uint8_t channel, uint8_t start)
  * @param amplitudCode Amplitude of the test signal: ADSTESTSIG_NOCHANGE, ADSTESTSIG_AMP_1X, ADSTESTSIG_AMP_2X
  * @param freqCode Frequence of the test signal: ADSTESTSIG_NOCHANGE, ADSTESTSIG_PULSE_SLOW, ADSTESTSIG_PULSE_FAST
  */
- /*void AllChannelsToTestCondition(uint8_t testInputCode, uint8_t amplitudeCode, uint8_t freqCode)
+ void AllChannelsToTestCondition(uint8_t testInputCode, uint8_t amplitudeCode, uint8_t freqCode)
  {
 	 bool isRunning_when_called = isRunning;
 
-	 Drv_Devices_stopRunning(); //must stop running to change channel settings
+	 StopRunning(); //must stop running to change channel settings
 	 delay_ms(10);
 
-	 Drv_ADS1299_configureInternalTestSignal(amplitudeCode, freqCode); //set the test signal to the desired state
-	 Drv_ADS1299_changeInputType(testInputCode);
+	 ADS1299_configureInternalTestSignal(amplitudeCode, freqCode);
+	 ADS1299_changeInputType(testInputCode);
 
-	 if(isRunning_when_called == TRUE)
+	 ADS1299_WriteChannelSettings();
+
+	 if(isRunning_when_called == true)
 	 {
-		 Drv_Devices_startRunning(cur_outputType); //restart if it was running before
+		 StartRunning(); //restart if it was running before
 	 }
  }
-*/
+
  /**
   * @brief Stop acquisition, set the channels and re-start acquisition
   * @param channel Channel number
   */
 
-/*void WriteChannelSettings(uint8_t channel)
+void WriteChannelSettings(uint8_t channel)
  {
  	bool isRunning_when_called = isRunning;
 
@@ -434,7 +436,7 @@ void ChangeChannelState(uint8_t channel, uint8_t start)
  		Drv_Devices_startRunning(cur_outputType); //restart, if it was running before
  	}
  }
-*/
+
  /**
   * @brief Set all channels to the default settings
   */
@@ -448,7 +450,7 @@ void ChangeChannelState(uint8_t channel, uint8_t start)
 
  	if(isRunning_when_called)
  	{
- 		StartRunning(cur_outputType); //restart, if was running before
+ 		StartRunning(); //restart, if was running before
  	}
  }
 
@@ -458,21 +460,12 @@ void ChangeChannelState(uint8_t channel, uint8_t start)
 
  void PrintRegisters()
 {
-	//uint8_t regData[24];
-	//ADS1299_Reset();
 	uint8_t i = 0; //loop counter
 	uint8_t vstring [4];
 	uint8_t regValue = 0x00;
 
 	if(!isRunning)
 	{
-		// Read out the first registers
-		//ADS1299_ReadRegisters(0x00, 0x0C);
-		//delay_ms(10); // stall to let all that data get read by the PC
-		//ADS1299_ReadRegisters(0x0D, 0x17-0x0D); // read out the rest
-
-		//Drv_ADS1299_getRegistersData(regData); //get the the current registers
-
 		HC05_SendString("\r\nBoard ADS Registers\r\n");
 
 		for(i=0; i<24; i++) //send the 24 ADS1299 registers
@@ -723,7 +716,7 @@ void PrintDefaultChannelSettings()
 
  	if(isRunning_when_called)
  	{
- 		//Drv_Devices_startRunning(cur_outputType); //restart, if it was running before
+ 		StartRunning(); //restart, if it was running before
  	}
  }
 

@@ -10,6 +10,9 @@
 #include <stdbool.h>
 #include "ADS1299_Parameters.h"
 
+
+void ADS1299_WriteChannelSettings(void);
+
 void ADS1299_StartStreaming(void);
 
 void ADS1299_UpdateChannelData(void);

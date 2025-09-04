@@ -91,10 +91,9 @@ bool StopRunning();
 
 /**
  * @brief Start data acquisition
- * @param OUT_TYPE Define if quiet or how many channels are active:  OUTPUT_NOTHING, OUTPUT_8_CHAN, OUTPUT_16_CHAN
  * @return HIGH if the device is running, LOW if not
  */
-bool StartRunning(int OUT_TYPE);
+bool StartRunning();
 
 /**
  * @brief Send via BLUETOOTH the data acquired by the ADS
