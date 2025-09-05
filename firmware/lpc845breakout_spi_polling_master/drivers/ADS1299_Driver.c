@@ -157,16 +157,7 @@ void ADS1299_WriteChannelSettings(void)
 {
     for (uint8_t ch = 1; ch <= numChannels; ++ch)
     {
-        uint8_t value = 0;
-        value |= (channelSettings[ch - 1][POWER_DOWN] & 0x01U) << 7;
-        value |= channelSettings[ch - 1][GAIN_SET] & 0x70U;
-        if (channelSettings[ch - 1][SRB2_SET] == YES)
-        {
-            value |= 0x08U;
-        }
-        value |= channelSettings[ch - 1][INPUT_TYPE_SET] & 0x07U;
-
-        ADS1299_WriteRegister(CH1SET + (ch - 1), value);
+    	ADS1299_WriteOneChannelSettings(ch);
     }
 }
 
@@ -176,7 +167,7 @@ void ADS1299_WriteDefaultChannelSettings(void)
     ADS1299_WriteChannelSettings();
 }
 
-/*void ADS1299_WriteOneChannelSettings(uint8_t channel)
+void ADS1299_WriteOneChannelSettings(uint8_t channel)
 {
     uint8_t value = 0;
     value |= (channelSettings[channel - 1][POWER_DOWN] & 0x01U) << 7;
@@ -188,7 +179,15 @@ void ADS1299_WriteDefaultChannelSettings(void)
     value |= channelSettings[channel - 1][INPUT_TYPE_SET] & 0x07U;
 
     ADS1299_WriteRegister(CH1SET + (channel - 1), value);
-}*/
+}
+
+void ADS1299_writeNewChannelSettings(uint8_t channel_selected, uint8_t* newChannelSettings)
+{
+	for(uint8_t i =0 ; i < 6 ; i++)
+	{
+		channelSettings[channel_selected][i] = newChannelSettings[i] ;
+	}
+}
 
 void ADS1299_Init(void)
 {

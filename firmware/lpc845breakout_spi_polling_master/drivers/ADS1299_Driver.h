@@ -10,6 +10,13 @@
 #include <stdbool.h>
 #include "ADS1299_Parameters.h"
 
+void ADS1299_writeNewChannelSettings(uint8_t channel_selected, uint8_t* newChannelSettings);
+
+void ADS1299_configureInternalTestSignal(uint8_t amplitudeCode,uint8_t freqCode);
+
+void ADS1299_changeInputType(uint8_t testInputCode);
+
+void ADS1299_WriteOneChannelSettings(uint8_t channel);
 
 void ADS1299_WriteChannelSettings(void);
 

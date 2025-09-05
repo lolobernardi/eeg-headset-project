@@ -17,6 +17,9 @@ static uint8_t Header = 0xA0;
 static uint8_t Footer = 0xC0;
 static uint8_t zero = 0x00;
 static uint8_t sampleCnt = 0;
+
+uint8_t newChannelSettings[6] = {0};
+
 /**
  * @brief Flag to indicate if the ADS1299 is acquiring data or not
  */
@@ -93,7 +96,7 @@ void EventSerial(uint8_t data)
 
 	if(get_channel_settings) // if we just got an 'x' expect channel setting parameters
 	{
-		//LoadChannelSettings(data); //go get channel settings parameters
+		LoadChannelSettings(data); //go get channel settings parameters
 	}
 	else if(get_leadoff_settings) // if we just got a 'z' expect lead-off setting parameters
 	{
@@ -201,12 +204,14 @@ void HandleOpenBCICommand(uint8_t command)
 					{
 						HC05_SendString("Updating channel settings\r\n");
 					}
-					//WriteChannelSettings(channel_selected); //Corroborar con Alejandro si vale la pena
+					ADS1299_writeNewChannelSettings(channel_selected, &newChannelSettings[0]);
+					WriteChannelSettings(channel_selected); //Corroborar con Alejandro si vale la pena
 					break;
 			case 'd':
 					if(!isRunning)
 					{
 						HC05_SendString("Updating channel settings to Default\r\n");
+						SendEndOfTransmission();
 					}
 					SetChannelsToDefaultSettings();
 					break;
@@ -261,13 +266,6 @@ void HandleOpenBCICommand(uint8_t command)
 					//ChangeChannelLeadOffDetect(channel_selected);
 					break;
 
-			/* Slave board commands */
-			case 'c':	// use 8 channel mode --> NOT USEFUL
-					//outputType = OUTPUT_8_CHAN;
-					break;
-			case 'C':	// use 16 channel mode --> NOT IMPLEMENTED
-					break;
-
 			/* Stream data and filter commands */
 			case 'b':
 					if(!isRunning)
@@ -307,6 +305,46 @@ void HandleOpenBCICommand(uint8_t command)
 
 	}
 }
+
+void LoadChannelSettings(uint8_t parameter)
+{
+	if(channel_settings_counter == 0)// if it's the first byte in this channel's array, this byte is the channel number to set
+	{
+		channel_selected = parameter - 1; // we just got the channel to load settings into (shift number down for array usage)
+		channel_settings_counter++;
+
+		/*if(!is_running)
+		{
+			uint8_t number = channel_selected + 1 + '0';
+			Drv_UART_Send((uint8_t*)("Load settings of channel: "),26);
+			Drv_UART_Send(&number,1);
+			Drv_UART_Send((uint8_t*)("\r\n"),2);
+		}*/
+
+	}
+	else
+	{
+		//  setting bytes are in order: POWER_DOWN, GAIN_SET, INPUT_TYPE_SET, BIAS_SET, SRB2_SET, SRB1_SET
+
+		parameter = parameter - '0'; //convert char to number
+
+		if(channel_settings_counter-1 == GAIN_SET)
+		{
+			parameter <<= 4;
+		}
+
+		// Fill array with current channel settings defined in the Drv_ADS1299 library
+		newChannelSettings[channel_settings_counter-1] = parameter;
+
+		channel_settings_counter++;
+
+		if(channel_settings_counter == 7) // 1 currentChannelToSet, plus 6 channelSetting parameters
+		{
+			get_channel_settings = false;
+		}
+	}
+}
+
 
 /**
  * @brief Function for printing commands menu
@@ -429,11 +467,11 @@ void WriteChannelSettings(uint8_t channel)
 
  	StopRunning(); //must stop running to change channel settings
 
- 	Drv_ADS1299_writeOneChannelSettings(channel+1); //change the channel settings on ADS
+ 	ADS1299_WriteOneChannelSettings(channel+1); //change the channel settings on ADS
 
  	if(isRunning_when_called)
  	{
- 		Drv_Devices_startRunning(cur_outputType); //restart, if it was running before
+ 		StartRunning(); //restart, if it was running before
  	}
  }
 

@@ -19,7 +19,7 @@ void BOARD_InitHardware(void)
 
     BOARD_InitBootPins();
     BOARD_BootClockFRO30M();
-    BOARD_InitDebugConsole();
+    //BOARD_InitDebugConsole();
 
     /* Attach main clock to SPI0. */
     CLOCK_Select(kSPI0_Clk_From_MainClk);

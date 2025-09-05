@@ -105,7 +105,7 @@ void BOARD_InitPins(void)
     /* PIO0 PIN21 (coords: 44) is configured as SPI0, SCK. */
     IOCON_PinMuxSet(IOCON, IOCON_INDEX_PIO0_21, IOCON_INDEX_PIO0_21_config);
 
-    const uint32_t IOCON_INDEX_PIO0_24_config = (/* Selects pull-up function */
+    const uint32_t IOCON_INDEX_PIO0_18_config = (/* Selects pull-up function */
                                                  IOCON_PIO_MODE_PULLUP |
                                                  /* Enable hysteresis */
                                                  IOCON_PIO_HYS_EN |
@@ -118,9 +118,9 @@ void BOARD_InitPins(void)
                                                  /* IOCONCLKDIV0 */
                                                  IOCON_PIO_CLKDIV0);
     /* PIO0 PIN24 (coords: 20) is configured as USART0, RXD. */
-    IOCON_PinMuxSet(IOCON, IOCON_INDEX_PIO0_24, IOCON_INDEX_PIO0_24_config);
+    IOCON_PinMuxSet(IOCON, IOCON_INDEX_PIO0_18, IOCON_INDEX_PIO0_18_config);
 
-    const uint32_t IOCON_INDEX_PIO0_25_config = (/* Selects pull-up function */
+    const uint32_t IOCON_INDEX_PIO0_17_config = (/* Selects pull-up function */
                                                  IOCON_PIO_MODE_PULLUP |
                                                  /* Enable hysteresis */
                                                  IOCON_PIO_HYS_EN |
@@ -133,7 +133,7 @@ void BOARD_InitPins(void)
                                                  /* IOCONCLKDIV0 */
                                                  IOCON_PIO_CLKDIV0);
     /* PIO0 PIN25 (coords: 19) is configured as USART0, TXD. */
-    IOCON_PinMuxSet(IOCON, IOCON_INDEX_PIO0_25, IOCON_INDEX_PIO0_25_config);
+    IOCON_PinMuxSet(IOCON, IOCON_INDEX_PIO0_17, IOCON_INDEX_PIO0_17_config);
 
     const uint32_t IOCON_INDEX_PIO0_26_config = (/* Selects pull-up function */
                                                  IOCON_PIO_MODE_PULLUP |
@@ -166,10 +166,10 @@ void BOARD_InitPins(void)
     IOCON_PinMuxSet(IOCON, IOCON_INDEX_PIO0_27, IOCON_INDEX_PIO0_27_config);
 
     /* USART0_TXD connect to P0_25 */
-    SWM_SetMovablePinSelect(SWM0, kSWM_USART0_TXD, kSWM_PortPin_P0_25);
+    SWM_SetMovablePinSelect(SWM0, kSWM_USART0_TXD, kSWM_PortPin_P0_17);
 
     /* USART0_RXD connect to P0_24 */
-    SWM_SetMovablePinSelect(SWM0, kSWM_USART0_RXD, kSWM_PortPin_P0_24);
+    SWM_SetMovablePinSelect(SWM0, kSWM_USART0_RXD, kSWM_PortPin_P0_18);
 
     /* SPI0_SCK connect to P0_21 */
     SWM_SetMovablePinSelect(SWM0, kSWM_SPI0_SCK, kSWM_PortPin_P0_21);
