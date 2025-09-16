@@ -10,7 +10,11 @@
 #include <stdbool.h>
 #include "ADS1299_Parameters.h"
 
-void ADS1299_writeNewChannelSettings(uint8_t channel_selected, uint8_t* newChannelSettings);
+#define bitSet(value, bit) ((value) |= (1UL << (bit)))
+#define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
+#define bitRead(value, bit) (((value) >> (bit)) & 0x01)
+
+void ADS1299_writeNewChannelSettings(uint8_t* newChannelSettings);
 
 void ADS1299_configureInternalTestSignal(uint8_t amplitudeCode,uint8_t freqCode);
 

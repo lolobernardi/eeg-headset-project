@@ -179,14 +179,50 @@ void ADS1299_WriteOneChannelSettings(uint8_t channel)
     value |= channelSettings[channel - 1][INPUT_TYPE_SET] & 0x07U;
 
     ADS1299_WriteRegister(CH1SET + (channel - 1), value);
+
+	// add or remove from inclusion in BIAS generation
+    uint8_t setting = 0x00;
+
+	setting = ADS1299_ReadRegister(BIAS_SENSP);       //get the current P bias settings
+
+	if(channelSettings[channel-1][BIAS_SET] == YES)
+	{
+		useInBias[channel-1] = true;
+		bitSet(setting,channel-1);    //set this channel's bit to add it to the bias generation
+	}
+	else
+	{
+		useInBias[channel-1] = false;
+		bitClear(setting,channel-1);  // clear this channel's bit to remove from bias generation
+	}
+
+	ADS1299_WriteRegister(BIAS_SENSP,setting); //send the modified byte back to the ADS
+	delay_ms(1);
+
+	setting = ADS1299_ReadRegister(BIAS_SENSN);       //get the current N bias settings
+
+	if(channelSettings[channel-1][BIAS_SET] == YES)
+	{
+		bitSet(setting,channel-1);    //set this channel's bit to add it to the bias generation
+	}
+	else
+	{
+		bitClear(setting,channel-1);  // clear this channel's bit to remove from bias generation
+	}
+
+	ADS1299_WriteRegister(BIAS_SENSN,setting); //send the modified byte back to the ADS
+	delay_ms(1);
 }
 
-void ADS1299_writeNewChannelSettings(uint8_t channel_selected, uint8_t* newChannelSettings)
+void ADS1299_writeNewChannelSettings(uint8_t* newChannelSettings)
 {
+	uint8_t channelSelected = newChannelSettings[0];
+
 	for(uint8_t i =0 ; i < 6 ; i++)
 	{
-		channelSettings[channel_selected][i] = newChannelSettings[i] ;
+		channelSettings[channelSelected-1][i] = newChannelSettings[i+1] ;
 	}
+	channelSettings[channelSelected-1][1] = newChannelSettings[2]<<4;
 }
 
 void ADS1299_Init(void)
@@ -209,6 +245,9 @@ void ADS1299_Init(void)
 
     ADS1299_WriteRegister(CONFIG1, 0xD0 | SAMPLE_RATE_250HZ);
     ADS1299_WriteRegister(LOFF, 0x02);
+    delay_us(10);
+
+    ADS1299_WriteRegister(CONFIG3,0b11101100);
     delay_us(10);
 }
 

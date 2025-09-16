@@ -36,6 +36,10 @@ uint8_t channel_settings_counter = 0;
  * @brief Keep track of what channel we are loading settings for
  */
 uint8_t channel_selected;
+
+uint8_t dataReceived[7] = {0};
+
+uint8_t counter = 0;
 /**
  * @brief Mode of use: 8 channels
  */
@@ -93,19 +97,60 @@ void BoardPresentation(void) {
  */
 void EventSerial(uint8_t data)
 {
-
-	if(get_channel_settings) // if we just got an 'x' expect channel setting parameters
+	if(data == 'x' || get_channel_settings)
 	{
-		LoadChannelSettings(data); //go get channel settings parameters
+		if(data != 'x' && data != 'X')
+		{
+			dataReceived[counter] = data - '0';
+			counter++;
+		}
+
+		get_channel_settings = true;
+
+		if(data == 'X')
+		{
+			WriteChannelSettings(&dataReceived[0]);
+			get_channel_settings = false;
+			counter = 0;
+		}
+	}else if(get_leadoff_settings) // if we just got a 'z' expect lead-off setting parameters
+	{
+		//LoadLeadOffSettings(data); //go get lead-off settings parameters
+	}else
+	{
+		HandleOpenBCICommand(data); // decode the command
+	}
+
+
+	/*if(counter == 15){
+		get_channel_settings = true;
+	}
+	if(get_channel_settings)
+	{
+		counter = 0;
+		get_channel_settings = false;
+	}*/
+	/*if(get_channel_settings) // if we just got an 'x' expect channel setting parameters
+	{
+		dataReceived[counter] = data;
+		counter++;
+
+		if(counter == 7){
+			get_channel_settings = false;
+			counter = 0;
+		}
+		//LoadChannelSettings(data); //go get channel settings parameters
 	}
 	else if(get_leadoff_settings) // if we just got a 'z' expect lead-off setting parameters
 	{
 		//LoadLeadOffSettings(data); //go get lead-off settings parameters
 	}
+
 	else
 	{
 		HandleOpenBCICommand(data); // decode the command
-	}
+	}*/
+
 }
 
 /**
@@ -195,8 +240,9 @@ void HandleOpenBCICommand(uint8_t command)
 					{
 						HC05_SendString("Ready to accept new channel settings\r\n");
 					}
+					//counter = 0;
 					channel_settings_counter = 0;
-					get_channel_settings = true;
+					//get_channel_settings = true;
 
 					 break;
 			case 'X':
@@ -204,8 +250,9 @@ void HandleOpenBCICommand(uint8_t command)
 					{
 						HC05_SendString("Updating channel settings\r\n");
 					}
-					ADS1299_writeNewChannelSettings(channel_selected, &newChannelSettings[0]);
+					/*ADS1299_writeNewChannelSettings(channel_selected, &newChannelSettings[0]);
 					WriteChannelSettings(channel_selected); //Corroborar con Alejandro si vale la pena
+					get_channel_settings = false;*/
 					break;
 			case 'd':
 					if(!isRunning)
@@ -306,20 +353,21 @@ void HandleOpenBCICommand(uint8_t command)
 	}
 }
 
-void LoadChannelSettings(uint8_t parameter)
+/*void LoadChannelSettings(uint8_t parameter)
 {
+	channel_selected
 	if(channel_settings_counter == 0)// if it's the first byte in this channel's array, this byte is the channel number to set
 	{
-		channel_selected = parameter - 1; // we just got the channel to load settings into (shift number down for array usage)
+		channel_selected = parameter - '0'; //- 1; // we just got the channel to load settings into (shift number down for array usage)
 		channel_settings_counter++;
 
-		/*if(!is_running)
+		if(!is_running)
 		{
 			uint8_t number = channel_selected + 1 + '0';
 			Drv_UART_Send((uint8_t*)("Load settings of channel: "),26);
 			Drv_UART_Send(&number,1);
 			Drv_UART_Send((uint8_t*)("\r\n"),2);
-		}*/
+		}
 
 	}
 	else
@@ -344,7 +392,7 @@ void LoadChannelSettings(uint8_t parameter)
 		}
 	}
 }
-
+*/
 
 /**
  * @brief Function for printing commands menu
@@ -461,13 +509,15 @@ void ChangeChannelState(uint8_t channel, uint8_t start)
   * @param channel Channel number
   */
 
-void WriteChannelSettings(uint8_t channel)
+void WriteChannelSettings(uint8_t *channel)
  {
  	bool isRunning_when_called = isRunning;
 
  	StopRunning(); //must stop running to change channel settings
 
- 	ADS1299_WriteOneChannelSettings(channel+1); //change the channel settings on ADS
+ 	ADS1299_writeNewChannelSettings(channel);
+
+ 	ADS1299_WriteOneChannelSettings(channel[0]); //change the channel settings on ADS
 
  	if(isRunning_when_called)
  	{

@@ -135,7 +135,7 @@ void SetChannelsDefaultSettings();
  * @brief Stop acquisition, set the channels and re-start acquisition
  * @param channel Channel number
  */
-void WriteChannelSettings(uint8_t channel);
+void WriteChannelSettings(uint8_t *channel);
 
 /**
  * @brief Set all channels to the default settings
