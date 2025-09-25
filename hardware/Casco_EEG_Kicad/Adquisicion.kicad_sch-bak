@@ -1,0 +1,13 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "52f33a37-e2cc-47a6-8c5a-8dc88fc39460")
+	(paper "A4")
+	(title_block
+		(title "Proyecto Casco EEG")
+		(date "2025-09-11")
+		(company "Bernardi Lorenzo - Dodera Francisco")
+	)
+	(lib_symbols)
+)
