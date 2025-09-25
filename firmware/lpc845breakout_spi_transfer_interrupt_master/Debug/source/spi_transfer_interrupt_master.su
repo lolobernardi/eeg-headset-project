@@ -1,5 +1,0 @@
-../source/spi_transfer_interrupt_master.c:38:13:EXAMPLE_MasterCallback	24	static
-../source/spi_transfer_interrupt_master.c:43:5:main	8	static
-../source/spi_transfer_interrupt_master.c:67:13:EXAMPLE_SPIMasterInit	40	static
-../source/spi_transfer_interrupt_master.c:90:13:EXAMPLE_MasterStartTransfer	32	static
-../source/spi_transfer_interrupt_master.c:114:13:EXAMPLE_TransferDataCheck	16	static

@@ -1,2 +1,0 @@
-C:\Users\Usuario\Desktop\ESCRITORIO\Facultad\Tesis\Proyecto_Casco_EEG\eeg-headset-project\firmware\lpc845breakout_spi_transfer_interrupt_master\drivers/fsl_clock.h:580:20:CLOCK_Select	16	static
-../board/board.c:25:10:BOARD_InitDebugConsole	16	static

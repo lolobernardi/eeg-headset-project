@@ -1,5 +1,0 @@
-../source/spi_transfer_interrupt_slave.c:37:13:slaveCallback	24	static
-../source/spi_transfer_interrupt_slave.c:42:5:main	8	static
-../source/spi_transfer_interrupt_slave.c:67:13:EXAMPLE_SlaveInit	16	static
-../source/spi_transfer_interrupt_slave.c:82:13:EXAMPLE_SlaveStartTransfer	32	static
-../source/spi_transfer_interrupt_slave.c:103:13:EXAMPLE_TransferDataCheck	16	static

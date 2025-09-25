@@ -1,5 +1,0 @@
-C:\Users\Usuario\Desktop\ESCRITORIO\Facultad\Tesis\Proyecto_Casco_EEG\eeg-headset-project\firmware\lpc845breakout_ctimer_match_example\drivers/fsl_clock.h:558:20:CLOCK_EnableClock	16	static
-C:\Users\Usuario\Desktop\ESCRITORIO\Facultad\Tesis\Proyecto_Casco_EEG\eeg-headset-project\firmware\lpc845breakout_ctimer_match_example\drivers/fsl_clock.h:569:20:CLOCK_DisableClock	16	static
-C:\Users\Usuario\Desktop\ESCRITORIO\Facultad\Tesis\Proyecto_Casco_EEG\eeg-headset-project\firmware\lpc845breakout_ctimer_match_example\drivers/fsl_iocon.h:102:22:IOCON_PinMuxSet	24	static
-../board/pin_mux.c:37:6:BOARD_InitBootPins	8	static
-../board/pin_mux.c:65:6:BOARD_InitPins	24	static

@@ -1,2 +1,0 @@
-C:\Users\Usuario\Desktop\ESCRITORIO\Facultad\Tesis\Proyecto_Casco_EEG\eeg-headset-project\firmware\lpc845breakout_ctimer_match_interrupt_example\drivers/fsl_clock.h:580:20:CLOCK_Select	16	static
-../board/hardware_init.c:15:6:BOARD_InitHardware	16	static
