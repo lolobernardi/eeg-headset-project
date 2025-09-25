@@ -53,6 +53,26 @@ bool get_leadoff_settings = false;
  */
 uint8_t leadoff_settings_counter = 0;
 
+
+volatile uint32_t g_millis = 0;
+
+void SysTick_Handler(void)
+{
+    g_millis++;
+}
+
+void init_millis(void)
+{
+    // Carga para 1 ms: CoreClock / 1000
+    uint32_t sysClock = CLOCK_GetFreq(kCLOCK_CoreSysClk);
+    SysTick_Config(sysClock / 10000U);
+}
+
+uint32_t millis(void)
+{
+    return g_millis;
+}
+
 // DELAY
 static inline void delay_ms(uint32_t ms)
 {
@@ -672,6 +692,43 @@ static inline void pack24be_from_s32(int32_t s, uint8_t out3[3])
     out3[2]		= (uint8_t)( u        & 0xFF);
 }
 
+void SendChannelDataPruebaBT(void)
+{
+    if (!isRunning) return;
+
+    ADS1299_UpdateChannelData();
+
+    uint8_t  packet[33];
+    int32_t  snap[8];
+    ADS1299_copyLatest(snap);
+
+    uint8_t idx = 0;
+    packet[idx++] = Header;      // [0]
+    packet[idx++] = sampleCnt++;      // [1] seq (0..255, wrap ok)
+
+    // [2..25] 8 canales * 3 bytes (24B), big-endian por canal
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        pack24be_from_s32(snap[ch], &packet[idx]);
+        idx += 3;
+    }
+
+    // [26..29] tx_ms (uint32 LE): timestamp de TX del MCU para medir latencia
+    const uint32_t tx_ms = millis();
+    packet[26] = (uint8_t)(tx_ms & 0xFF);
+    packet[27] = (uint8_t)((tx_ms >> 8) & 0xFF);
+    packet[28] = (uint8_t)((tx_ms >> 16) & 0xFF);
+    packet[29] = (uint8_t)((tx_ms >> 24) & 0xFF);
+
+    // [30..31] reservados / status / checksum (si no usás, dejá 0)
+    packet[30] = 0x00;
+    packet[31] = 0x00;
+
+    // [32] footer
+    packet[32] = Footer;
+
+    HC05_SendBytes(packet, sizeof(packet));
+}
+
 
 /**
  * @brief Send via BLUETOOTH the data acquired by the ADS
@@ -704,7 +761,7 @@ static inline void pack24be_from_s32(int32_t s, uint8_t out3[3])
 		packet[i] = 0x00;
 	}
 
-	HC05_SendBytes(ptr_packet, sizeof(packet));
+	HC05_SendBytes(ptr_packet, 33);
  }
 
  /**

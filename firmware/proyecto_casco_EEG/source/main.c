@@ -38,6 +38,7 @@ int main(void)
     BOARD_InitHardware();
     ADS1299_Init();
     HC05_Init(115200);
+    init_millis();
 
     while (1)
     {

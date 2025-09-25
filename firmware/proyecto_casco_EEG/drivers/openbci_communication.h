@@ -83,6 +83,9 @@ void HandleOpenBCICommand(uint8_t command);
  */
 void PrintMenu(void);
 
+
+void init_millis(void);
+
 /**
  * @brief Stop data acquisition
  * @return HIGH if the device is running, LOW if not
@@ -99,6 +102,9 @@ bool StartRunning();
  * @brief Send via BLUETOOTH the data acquired by the ADS
  */
  void SendChannelData();
+
+
+ void SendChannelDataPruebaBT(void);
 
 /**
  * @brief Print the current state of all ADS1299 registers

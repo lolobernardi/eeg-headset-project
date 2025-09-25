@@ -17,7 +17,7 @@ static volatile int32_t channelData[8];
 static uint32_t status;
 
 #define ADS1299_SPI_BASE     SPI0
-#define ADS1299_SPI_BAUDRATE 500000U //1000000U
+#define ADS1299_SPI_BAUDRATE 2000000U
 #define ADS1299_SPI_SSEL     kSPI_SselDeAssertAll
 
 
@@ -29,10 +29,10 @@ static inline void delay_ms(uint32_t ms)
 static inline void initializeDefaultChannelSettings(void)
 {
     defaultChannelSettings[POWER_DOWN] = NO;
-    defaultChannelSettings[GAIN_SET] = ADS_GAIN12;
+    defaultChannelSettings[GAIN_SET] = ADS_GAIN24;
     defaultChannelSettings[INPUT_TYPE_SET] = ADSINPUT_NORMAL;
-    defaultChannelSettings[BIAS_SET] = NO;
-    defaultChannelSettings[SRB2_SET] = NO;
+    defaultChannelSettings[BIAS_SET] = YES;
+    defaultChannelSettings[SRB2_SET] = YES;
     defaultChannelSettings[SRB1_SET] = NO;
 }
 
@@ -321,54 +321,6 @@ void ADS1299_copyLatest(int32_t out[8])
     memcpy(out, (const void*)channelData, sizeof(channelData));
 }
 
-/*void ADS1299_SendChannelDataOpenBCI(void)
-{
-	if(!isRunning) return;
-
-	//USART_WriteBlocking(USART0, (const uint8_t*)"HELLO\r\n", 7);
-	uint8_t packet[33];
-	uint8_t prueba = 0x31;
-	uint8_t  prueba2 = 0x30;
-	const uint8_t *ptr_packet = &packet[0];
-
-	packet[0] = Header;
-	packet[1] = sampleCnt++;
-	packet[32] = Footer;
-
-	for(uint8_t i = 2 ; i<26 ;i++)
-	{
-		if(sampleCnt < 126)
-			packet[i] = prueba;
-		else packet[i] = prueba2;
-	}
-	for(uint8_t i = 26 ; i<32 ;i++)
-	{
-		packet[i] = 0x00;
-	}
-
-	USART_WriteBlocking(USART0, ptr_packet, sizeof(packet));
-
-}
-*/
-/*
-void ADS1299_SendChannelDataUART(void)
-{
-	if(isRunning)
-	{
-		//PRINTF("\n\r SIZE OF CHANNELDATA: ");
-		//PRINTF("  0x%02X", sizeof(channelData));
-		//PRINTF("\r\r");
-
-		for(uint8_t i = 0 ; i<8 ; i++)
-			{
-		        if ((i & 0x07U) == 0U)
-		        {
-		            PRINTF("\n\r");
-		        }
-				PRINTF("  0x%02X", channelData[i]);
-			}
-	}
-}*/
 
 void ADS1299_ReadData(int32_t *channelData, uint32_t *status)
 {
