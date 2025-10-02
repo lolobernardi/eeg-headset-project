@@ -1,0 +1,67 @@
+# --- Logs de RTOS ---
+firmware/AzureRTOS_TAD_logs/
+firmware/FreeRTOS_TAD_logs/
+firmware/ZephyrRTOS_TAD_logs/
+
+# --- Archivos temporales de compilación ---
+*.o
+*.obj
+*.d
+*.map
+*.elf
+*.axf
+*.bin
+*.hex
+*.lst
+*.out
+
+# --- Directorios de build ---
+build/
+Debug/
+Release/
+out/
+*.dep
+
+# --- Archivos de IDE (Eclipse / MCUXpresso / VSCode) ---
+**/.settings/
+**/.metadata/
+*.launch
+*.log
+*.swp
+*.swo
+*.user
+*.tmp
+*.bak
+*.class
+*.vscode/
+
+# --- Archivos de KiCad ---
+# Copias de seguridad y backups automáticos
+*.bak
+*-backups/
+*.zip
+
+# Archivos intermedios/auxiliares de KiCad
+*.kicad_prl
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*.kicad_mod-bak
+*.dcm
+*.net
+*.xml
+
+# Fabricación/plots (gerbers, drills, etc)
+*.gbr
+*.gtl
+*.gts
+*.gto
+*.gbl
+*.gbs
+*.gbo
+*.drl
+*.zip
+
+# --- Archivos de sistema ---
+.DS_Store
+Thumbs.db
+desktop.ini

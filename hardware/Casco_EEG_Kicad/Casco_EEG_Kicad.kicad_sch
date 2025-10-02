@@ -1,0 +1,668 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "3414db36-80da-469c-8b48-81d6bd2f8966")
+	(paper "A4")
+	(title_block
+		(title "Proyecto Casco EEG")
+		(date "2025-09-11")
+		(company "Bernardi Lorenzo - Dodera Francisco")
+	)
+	(lib_symbols)
+	(wire
+		(pts
+			(xy 90.17 128.27) (xy 101.6 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08c8643a-675f-401b-b9d1-b92c228244ab")
+	)
+	(wire
+		(pts
+			(xy 161.29 59.69) (xy 203.2 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "27f1b256-8391-4674-be79-afabc9b0baa6")
+	)
+	(wire
+		(pts
+			(xy 109.22 87.63) (xy 97.79 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a3f4341-f65d-40c0-96ec-30de53c199ad")
+	)
+	(wire
+		(pts
+			(xy 161.29 77.47) (xy 203.2 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43550f74-a66c-4573-bf35-d0e508999ba7")
+	)
+	(wire
+		(pts
+			(xy 165.1 124.46) (xy 161.29 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "47b11a03-ff77-4a8e-bff0-61ebd12e7025")
+	)
+	(wire
+		(pts
+			(xy 161.29 72.39) (xy 203.2 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4d10a7e3-ea40-4bae-8be6-9f8fb149f276")
+	)
+	(wire
+		(pts
+			(xy 167.64 128.27) (xy 167.64 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6da49465-c94f-44dc-8105-030be776fd4a")
+	)
+	(wire
+		(pts
+			(xy 165.1 92.71) (xy 165.1 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7359e6a3-2a16-4641-a8d8-9efad6b19ca4")
+	)
+	(wire
+		(pts
+			(xy 97.79 87.63) (xy 97.79 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ba79e96-cf3f-43a7-a2b8-98f03f0a0bbf")
+	)
+	(wire
+		(pts
+			(xy 161.29 54.61) (xy 203.2 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "88018230-4d40-47ff-a349-6c279b883aa9")
+	)
+	(wire
+		(pts
+			(xy 161.29 57.15) (xy 203.2 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91dd9f37-b11e-48a9-bc9a-5a37ef373b00")
+	)
+	(wire
+		(pts
+			(xy 161.29 128.27) (xy 167.64 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "952fae26-e9dc-44f4-b894-3199eedd2639")
+	)
+	(wire
+		(pts
+			(xy 161.29 62.23) (xy 203.2 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a2db78ff-97f3-419e-9627-b1c38dd2871d")
+	)
+	(wire
+		(pts
+			(xy 161.29 90.17) (xy 167.64 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3079193-0f1f-4ce2-90ae-b1106c22c291")
+	)
+	(wire
+		(pts
+			(xy 101.6 91.44) (xy 109.22 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b1778f59-4731-4c2d-8b29-6fb6a61b2276")
+	)
+	(wire
+		(pts
+			(xy 161.29 92.71) (xy 165.1 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b4e9e4c2-ada8-4407-9115-6ef76c8dfe86")
+	)
+	(wire
+		(pts
+			(xy 101.6 128.27) (xy 101.6 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b7f5fce8-27c1-4361-b677-a244ccdc76cb")
+	)
+	(wire
+		(pts
+			(xy 97.79 124.46) (xy 90.17 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b89a958d-b7f6-4f48-88d6-ebb4349f54bd")
+	)
+	(wire
+		(pts
+			(xy 161.29 69.85) (xy 203.2 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dbef4907-c6a2-4810-962e-50286203cea1")
+	)
+	(wire
+		(pts
+			(xy 161.29 74.93) (xy 203.2 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e02b7bfe-e02a-4818-8012-1af880bcbaef")
+	)
+	(sheet
+		(at 203.2 41.91)
+		(size 45.72 55.88)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "3a705a48-b47e-4a5a-aeef-19694e923174")
+		(property "Sheetname" "Adquisicion"
+			(at 203.2 41.1984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Adquisicion.kicad_sch"
+			(at 203.2 98.3746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "CS{slash}" input
+			(at 203.2 59.69 180)
+			(uuid "5fc96f06-ea1f-40fc-a996-ce2dba19a83e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DRDY{slash}" output
+			(at 203.2 69.85 180)
+			(uuid "a03c14b5-b688-44fc-8271-ded50392eda7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MISO" output
+			(at 203.2 57.15 180)
+			(uuid "ba6c4278-170a-4da5-9121-875255ec4642")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "MOSI" input
+			(at 203.2 54.61 180)
+			(uuid "84a43dd2-c4b1-42a8-a0ae-e254a31d0cb7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "PWDN{slash}" input
+			(at 203.2 72.39 180)
+			(uuid "85dcc03d-80ea-4c99-80a7-721d25357c6b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "RESET" input
+			(at 203.2 74.93 180)
+			(uuid "36fdf0b0-0bf1-4746-b1c2-22fd36f0ed8a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "SCLK" input
+			(at 203.2 62.23 180)
+			(uuid "0528fd7c-aaa3-473a-bd6a-c83aa4995938")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "START" input
+			(at 203.2 77.47 180)
+			(uuid "8cc6c2c1-ba2d-4515-be27-f2ec19230ea8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "Casco_EEG_Kicad"
+				(path "/3414db36-80da-469c-8b48-81d6bd2f8966"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 109.22 40.64)
+		(size 52.07 57.15)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "44356e0f-f22d-4dd2-a71b-7da6f56accdf")
+		(property "Sheetname" "CPU"
+			(at 110.998 39.878 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "CPU.kicad_sch"
+			(at 137.414 99.314 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "RX_Master" input
+			(at 161.29 90.17 0)
+			(uuid "1a1559d6-cfda-4a5c-9847-ae835ff77a41")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CS{slash}" output
+			(at 161.29 59.69 0)
+			(uuid "f58be33b-51f4-4177-9bf6-5f0604102969")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "DRDY{slash}" input
+			(at 161.29 69.85 0)
+			(uuid "7ae1a1c9-5313-4d75-a1c4-f15dd4b5a510")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MISO" input
+			(at 161.29 57.15 0)
+			(uuid "936fb717-789e-4dc0-97e8-449edc6935dd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "MOSI" output
+			(at 161.29 54.61 0)
+			(uuid "451156e2-46cc-436f-999f-e706b8e99f3a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "PWDN{slash}" output
+			(at 161.29 72.39 0)
+			(uuid "d9ce2bed-87f3-476f-af2f-505692cfe11c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "RESET" output
+			(at 161.29 74.93 0)
+			(uuid "3a479c3f-3b93-4fde-b7a3-c74a7772939e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "SCLK" output
+			(at 161.29 62.23 0)
+			(uuid "417a45e9-ddb7-422d-863c-0255064a301a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "START" output
+			(at 161.29 77.47 0)
+			(uuid "556b7144-8758-44f2-9b57-30d694f3fe86")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "TX_Master" output
+			(at 161.29 92.71 0)
+			(uuid "eddc1755-c375-4768-a0ca-c2bb6423c4c4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "User_Button" input
+			(at 109.22 91.44 180)
+			(uuid "8c7b7b03-e613-4f54-b3f0-1d7c379971a2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "OnOff_LED" output
+			(at 109.22 87.63 180)
+			(uuid "eaa09ce0-0834-4849-9748-3cff29f2e249")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "Casco_EEG_Kicad"
+				(path "/3414db36-80da-469c-8b48-81d6bd2f8966"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 35.56 40.64)
+		(size 45.72 57.15)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "738a2f03-0f5c-435b-af80-cc097a0ed5f5")
+		(property "Sheetname" "Alimentacion"
+			(at 35.56 39.9284 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Alimentacion.kicad_sch"
+			(at 35.56 98.3746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Casco_EEG_Kicad"
+				(path "/3414db36-80da-469c-8b48-81d6bd2f8966"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 35.56 115.57)
+		(size 54.61 34.29)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "9b4f0b8a-fe97-4a35-b42d-1b02d9df194c")
+		(property "Sheetname" "Interfaz_Usuario"
+			(at 35.56 114.8584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Interfaz_Usuario.kicad_sch"
+			(at 35.56 150.4446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "OnOff_LED" input
+			(at 90.17 124.46 0)
+			(uuid "98045ad0-e31f-4b5c-be79-b4648570ed1a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "User_Button" input
+			(at 90.17 128.27 0)
+			(uuid "485e26f1-51f9-4ec8-95ba-eed355ca5b1b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "Casco_EEG_Kicad"
+				(path "/3414db36-80da-469c-8b48-81d6bd2f8966"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 109.22 115.57)
+		(size 52.07 33.02)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "fe171ca0-0165-4621-a7c1-0aa23dfd8c22")
+		(property "Sheetname" "Transmision"
+			(at 109.22 114.8584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Transmision.kicad_sch"
+			(at 109.22 149.1746 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "RX_Slave" input
+			(at 161.29 124.46 0)
+			(uuid "81b29356-e12e-4233-a1b2-d1b3e7bbfd86")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "TX_Slave" output
+			(at 161.29 128.27 0)
+			(uuid "2fd7b383-b1b7-4de3-b10b-1d555e005d99")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "Casco_EEG_Kicad"
+				(path "/3414db36-80da-469c-8b48-81d6bd2f8966"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
