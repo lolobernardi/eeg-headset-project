@@ -6,7 +6,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(property "Reference" "U"
+		(property "Reference" "LPC845M301JBD48E"
 			(at -6.858 43.434 0)
 			(effects
 				(font
@@ -14,7 +14,7 @@
 				)
 			)
 		)
-		(property "Value" "LPC845M301JBD48E"
+		(property "Value" ""
 			(at 0 0 0)
 			(effects
 				(font
@@ -22,7 +22,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Huellas:QFP50P900X900X160-48N"
+		(property "Footprint" ""
 			(at 0 0 0)
 			(effects
 				(font

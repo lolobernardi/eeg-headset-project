@@ -465,9 +465,9 @@
 				(justify right)
 			)
 		)
-		(pin "OnOff_Led" output
-			(at 109.22 87.63 180)
-			(uuid "4602a6fa-6c45-486f-a35f-526481223b1b")
+		(pin "User_Button" input
+			(at 109.22 91.44 180)
+			(uuid "8c7b7b03-e613-4f54-b3f0-1d7c379971a2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -475,9 +475,9 @@
 				(justify left)
 			)
 		)
-		(pin "User_Button" input
-			(at 109.22 91.44 180)
-			(uuid "8c7b7b03-e613-4f54-b3f0-1d7c379971a2")
+		(pin "OnOff_LED" output
+			(at 109.22 87.63 180)
+			(uuid "eaa09ce0-0834-4849-9748-3cff29f2e249")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -579,9 +579,9 @@
 				(justify right)
 			)
 		)
-		(pin "User_button" input
+		(pin "User_Button" input
 			(at 90.17 128.27 0)
-			(uuid "64724047-56a1-4099-9a43-f39bc2e1b037")
+			(uuid "485e26f1-51f9-4ec8-95ba-eed355ca5b1b")
 			(effects
 				(font
 					(size 1.27 1.27)

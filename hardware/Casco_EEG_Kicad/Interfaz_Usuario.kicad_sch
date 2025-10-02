@@ -312,191 +312,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Switch:SW_Nidec_CAS-120A1"
-			(pin_names
-				(offset 1)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "SW"
-				(at 0 4.318 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "SW_Nidec_CAS-120A1"
-				(at 0 -5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Button_Switch_SMD:Nidec_Copal_CAS-120A"
-				(at 0 -10.16 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.nidec-components.com/e/catalog/switch/cas.pdf"
-				(at 0 -7.62 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Switch, single pole double throw"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "switch single-pole double-throw spdt ON-ON"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*Nidec?Copal?CAS?120A*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "SW_Nidec_CAS-120A1_0_1"
-				(circle
-					(center -2.032 0)
-					(radius 0.4572)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.651 0.254) (xy 1.651 2.286)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 2.54)
-					(radius 0.4572)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 -2.54)
-					(radius 0.4572)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SW_Nidec_CAS-120A1_1_1"
-				(rectangle
-					(start -3.175 3.81)
-					(end 3.175 -3.81)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin passive line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 2.54 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 -2.54 180)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Switch:SW_Push"
 			(pin_numbers
 				(hide yes)
@@ -913,7 +728,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 95.25) (xy 111.76 100.33)
+			(xy 181.61 93.98) (xy 181.61 99.06)
 		)
 		(stroke
 			(width 0)
@@ -933,7 +748,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 81.28) (xy 111.76 87.63)
+			(xy 181.61 80.01) (xy 181.61 86.36)
 		)
 		(stroke
 			(width 0)
@@ -963,7 +778,7 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 113.03) (xy 111.76 107.95)
+			(xy 181.61 111.76) (xy 181.61 106.68)
 		)
 		(stroke
 			(width 0)
@@ -973,7 +788,7 @@
 	)
 	(hierarchical_label "OnOff_LED"
 		(shape input)
-		(at 111.76 81.28 180)
+		(at 181.61 80.01 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -982,7 +797,7 @@
 		)
 		(uuid "c4882cfb-0f88-4108-aed1-39a92070c0ee")
 	)
-	(hierarchical_label "User_button"
+	(hierarchical_label "User_Button"
 		(shape input)
 		(at 140.97 95.25 180)
 		(effects
@@ -994,77 +809,6 @@
 		(uuid "f4db301e-6ae6-4128-9bff-2ce06327c79e")
 	)
 	(symbol
-		(lib_id "Switch:SW_Nidec_CAS-120A1")
-		(at 62.23 91.44 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3fdb85cb-9bfa-4c18-9029-4d4d3eac7ce0")
-		(property "Reference" "SW6"
-			(at 62.23 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SW_Nidec_CAS-120A1"
-			(at 62.23 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_SMD:Nidec_Copal_CAS-120A"
-			(at 62.23 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.nidec-components.com/e/catalog/switch/cas.pdf"
-			(at 62.23 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Switch, single pole double throw"
-			(at 62.23 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "48b6a786-ab74-4b3a-a81a-d5a1d729fc52")
-		)
-		(pin "2"
-			(uuid "a2f27b75-5479-48d9-a878-a83d553f86b4")
-		)
-		(pin "1"
-			(uuid "27a89642-44b0-44d4-b300-96ddc2cc43aa")
-		)
-		(instances
-			(project ""
-				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/9b4f0b8a-fe97-4a35-b42d-1b02d9df194c"
-					(reference "SW6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GNDD")
 		(at 148.59 111.76 0)
 		(unit 1)
@@ -1074,7 +818,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4899cdcc-04a0-4866-87f0-19e2a1a42734")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR044"
 			(at 148.59 118.11 0)
 			(effects
 				(font
@@ -1124,7 +868,7 @@
 		(instances
 			(project "Casco_EEG_Kicad"
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/9b4f0b8a-fe97-4a35-b42d-1b02d9df194c"
-					(reference "#PWR029")
+					(reference "#PWR044")
 					(unit 1)
 				)
 			)
@@ -1132,31 +876,31 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 111.76 91.44 0)
+		(at 181.61 90.17 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "4a1904cf-6288-4c2b-9196-4df6a84ecc39")
-		(property "Reference" "R17"
-			(at 116.84 90.17 0)
+		(property "Reference" "R26"
+			(at 186.69 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "R"
-			(at 116.84 92.71 0)
+		(property "Value" "1.2k"
+			(at 186.69 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 109.982 91.44 90)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 179.832 90.17 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1165,7 +909,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 111.76 91.44 0)
+			(at 181.61 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1174,7 +918,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 111.76 91.44 0)
+			(at 181.61 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1191,7 +935,7 @@
 		(instances
 			(project "Casco_EEG_Kicad"
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/9b4f0b8a-fe97-4a35-b42d-1b02d9df194c"
-					(reference "R17")
+					(reference "R26")
 					(unit 1)
 				)
 			)
@@ -1199,15 +943,15 @@
 	)
 	(symbol
 		(lib_id "power:GNDD")
-		(at 111.76 113.03 0)
+		(at 181.61 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "59dd13b8-4d17-4d4f-8256-5e4e42ca999e")
-		(property "Reference" "#PWR030"
-			(at 111.76 119.38 0)
+		(property "Reference" "#PWR045"
+			(at 181.61 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1216,7 +960,7 @@
 			)
 		)
 		(property "Value" "GNDD"
-			(at 115.824 113.284 0)
+			(at 185.674 112.014 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1224,7 +968,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 111.76 113.03 0)
+			(at 181.61 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1233,7 +977,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 111.76 113.03 0)
+			(at 181.61 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1242,7 +986,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDD\" , digital ground"
-			(at 111.76 113.03 0)
+			(at 181.61 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1256,7 +1000,7 @@
 		(instances
 			(project "Casco_EEG_Kicad"
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/9b4f0b8a-fe97-4a35-b42d-1b02d9df194c"
-					(reference "#PWR030")
+					(reference "#PWR045")
 					(unit 1)
 				)
 			)
@@ -1272,7 +1016,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6f6ac447-d3ba-48c7-bd03-ec3c195e8c6f")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR043"
 			(at 148.59 86.36 0)
 			(effects
 				(font
@@ -1322,7 +1066,7 @@
 		(instances
 			(project "Casco_EEG_Kicad"
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/9b4f0b8a-fe97-4a35-b42d-1b02d9df194c"
-					(reference "#PWR028")
+					(reference "#PWR043")
 					(unit 1)
 				)
 			)
@@ -1338,7 +1082,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8d8916bd-c6e7-4219-bad7-5ac5237f3167")
-		(property "Reference" "R16"
+		(property "Reference" "R25"
 			(at 151.13 88.8999 0)
 			(effects
 				(font
@@ -1356,7 +1100,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 146.812 90.17 90)
 			(effects
 				(font
@@ -1392,7 +1136,7 @@
 		(instances
 			(project "Casco_EEG_Kicad"
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/9b4f0b8a-fe97-4a35-b42d-1b02d9df194c"
-					(reference "R16")
+					(reference "R25")
 					(unit 1)
 				)
 			)
@@ -1400,15 +1144,15 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 111.76 104.14 90)
+		(at 181.61 102.87 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "cdda30c3-5c36-49bf-b64b-b94e0a2e4450")
-		(property "Reference" "D2"
-			(at 115.57 104.4574 90)
+		(property "Reference" "D5"
+			(at 185.42 103.1874 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1417,7 +1161,7 @@
 			)
 		)
 		(property "Value" "LED"
-			(at 115.57 106.9974 90)
+			(at 185.42 105.7274 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1425,8 +1169,8 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
-			(at 111.76 104.14 0)
+		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
+			(at 181.61 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1435,7 +1179,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 111.76 104.14 0)
+			(at 181.61 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1444,7 +1188,7 @@
 			)
 		)
 		(property "Description" "Light emitting diode"
-			(at 111.76 104.14 0)
+			(at 181.61 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1453,7 +1197,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 111.76 104.14 0)
+			(at 181.61 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1470,7 +1214,7 @@
 		(instances
 			(project "Casco_EEG_Kicad"
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/9b4f0b8a-fe97-4a35-b42d-1b02d9df194c"
-					(reference "D2")
+					(reference "D5")
 					(unit 1)
 				)
 			)
@@ -1485,7 +1229,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e78864a5-490d-475c-ba43-b692ae3e9cb7")
-		(property "Reference" "SW5"
+		(property "Reference" "SW6"
 			(at 145.034 101.6 90)
 			(effects
 				(font
@@ -1502,7 +1246,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_TL3305A"
 			(at 153.67 101.6 0)
 			(effects
 				(font
@@ -1538,7 +1282,7 @@
 		(instances
 			(project "Casco_EEG_Kicad"
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/9b4f0b8a-fe97-4a35-b42d-1b02d9df194c"
-					(reference "SW5")
+					(reference "SW6")
 					(unit 1)
 				)
 			)

@@ -299,7 +299,7 @@
 								<option id="com.crt.advproject.link.gcc.lto.1922670760" name="Enable Link-time optimization (-flto)" superClass="com.crt.advproject.link.gcc.lto"/>
 								<option id="com.crt.advproject.link.gcc.lto.optmization.level.416894738" name="Link-time optimization level" superClass="com.crt.advproject.link.gcc.lto.optmization.level"/>
 								<option id="com.crt.advproject.link.manage.15629105" name="Manage linker script" superClass="com.crt.advproject.link.manage" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.link.script.1945635520" name="Linker script" superClass="com.crt.advproject.link.script" value="&quot;proyecto_casco_EEG_Debug.ld&quot;" valueType="string"/>
+								<option id="com.crt.advproject.link.script.1945635520" name="Linker script" superClass="com.crt.advproject.link.script" value="proyecto_casco_EEG_Debug.ld" valueType="string"/>
 								<option id="com.crt.advproject.link.scriptdir.514638849" name="Script path" superClass="com.crt.advproject.link.scriptdir"/>
 								<option id="com.crt.advproject.link.crpenable.338981889" name="Enable automatic placement of Code Read Protection field in image" superClass="com.crt.advproject.link.crpenable" value="true" valueType="boolean"/>
 								<option id="com.crt.advproject.link.flashconfigenable.1283690895" name="Enable automatic placement of Flash Configuration field in image" superClass="com.crt.advproject.link.flashconfigenable" value="true" valueType="boolean"/>
@@ -514,9 +514,9 @@
 								<option id="com.crt.advproject.gcc.specs.1863749235" name="Specs" superClass="com.crt.advproject.gcc.specs" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.gcc.config.1025054221" name="Obsolete (Config)" superClass="com.crt.advproject.gcc.config" useByScannerDiscovery="false"/>
 								<option id="com.crt.advproject.gcc.store.247265744" name="Obsolete (Store)" superClass="com.crt.advproject.gcc.store" useByScannerDiscovery="false"/>
-								<option id="com.crt.advproject.gcc.exe.release.option.optimization.level.1706813120" superClass="com.crt.advproject.gcc.exe.release.option.optimization.level"/>
-								<option id="com.crt.advproject.gcc.exe.release.option.debugging.level.1333449027" superClass="com.crt.advproject.gcc.exe.release.option.debugging.level"/>
-								<option id="com.crt.advproject.gcc.exe.release.option.debugging.other.1641418470" superClass="com.crt.advproject.gcc.exe.release.option.debugging.other"/>
+								<option id="com.crt.advproject.gcc.exe.release.option.optimization.level.1706813120" superClass="com.crt.advproject.gcc.exe.release.option.optimization.level" useByScannerDiscovery="true"/>
+								<option id="com.crt.advproject.gcc.exe.release.option.debugging.level.1333449027" superClass="com.crt.advproject.gcc.exe.release.option.debugging.level" useByScannerDiscovery="false"/>
+								<option id="com.crt.advproject.gcc.exe.release.option.debugging.other.1641418470" superClass="com.crt.advproject.gcc.exe.release.option.debugging.other" useByScannerDiscovery="false"/>
 								<inputType id="com.crt.advproject.compiler.input.531830375" superClass="com.crt.advproject.compiler.input"/>
 							</tool>
 							<tool id="com.crt.advproject.gas.exe.release.1088997018" name="MCU Assembler" superClass="com.crt.advproject.gas.exe.release">
@@ -638,7 +638,7 @@
 								<option id="com.crt.advproject.link.gcc.lto.optmization.level.395063343" name="Link-time optimization level" superClass="com.crt.advproject.link.gcc.lto.optmization.level"/>
 								<option id="com.crt.advproject.link.fpu.1460549734" name="Floating point" superClass="com.crt.advproject.link.fpu"/>
 								<option id="com.crt.advproject.link.manage.1987491230" name="Manage linker script" superClass="com.crt.advproject.link.manage" value="true" valueType="boolean"/>
-								<option id="com.crt.advproject.link.script.957701790" name="Linker script" superClass="com.crt.advproject.link.script" value="&quot;proyecto_casco_EEG_Release.ld&quot;" valueType="string"/>
+								<option id="com.crt.advproject.link.script.957701790" name="Linker script" superClass="com.crt.advproject.link.script" value="proyecto_casco_EEG_Release.ld" valueType="string"/>
 								<option id="com.crt.advproject.link.scriptdir.438292595" name="Script path" superClass="com.crt.advproject.link.scriptdir"/>
 								<option id="com.crt.advproject.link.crpenable.1631169871" name="Enable automatic placement of Code Read Protection field in image" superClass="com.crt.advproject.link.crpenable" value="true" valueType="boolean"/>
 								<option id="com.crt.advproject.link.flashconfigenable.988743864" name="Enable automatic placement of Flash Configuration field in image" superClass="com.crt.advproject.link.flashconfigenable" value="true" valueType="boolean"/>
