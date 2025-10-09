@@ -926,6 +926,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC PN" "C22765"
+			(at 181.61 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "a48358cc-83d0-4345-bd46-3f6e37f31eee")
 		)
@@ -1127,6 +1136,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC PN" "C25804"
+			(at 148.59 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "64b004aa-47df-4341-ad3a-728115fd456c")
 		)
@@ -1229,7 +1247,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e78864a5-490d-475c-ba43-b692ae3e9cb7")
-		(property "Reference" "SW6"
+		(property "Reference" "SW1"
 			(at 145.034 101.6 90)
 			(effects
 				(font
@@ -1282,7 +1300,7 @@
 		(instances
 			(project "Casco_EEG_Kicad"
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/9b4f0b8a-fe97-4a35-b42d-1b02d9df194c"
-					(reference "SW6")
+					(reference "SW1")
 					(unit 1)
 				)
 			)
