@@ -4152,6 +4152,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC PN" "C19171394"
+			(at 180.34 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "e74aa93d-f0a8-4588-a437-d1f9b8e21e38")
 		)
@@ -4252,7 +4261,7 @@
 				)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "2.2k"
 			(at 167.64 80.01 90)
 			(effects
 				(font
@@ -4320,7 +4329,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "10k"
 			(at 162.052 96.774 0)
 			(effects
 				(font
@@ -4348,6 +4357,15 @@
 			)
 		)
 		(property "Description" "Resistor"
+			(at 167.64 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC PN" "C25804"
 			(at 167.64 95.25 0)
 			(effects
 				(font
@@ -5056,6 +5074,15 @@
 					(size 1.27 1.27)
 				)
 				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "LCSC PN" "C115360"
+			(at 181.61 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 				(hide yes)
 			)
 		)
