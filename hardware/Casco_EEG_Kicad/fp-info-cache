@@ -1,4 +1,4 @@
-25623907584937776
+25629189820599677
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -60368,6 +60368,13 @@ GCT_USB3080-XX-00-A_REVE
 9
 9
 Huellas
+GCT_USB4125-GF-A_REVA2
+
+
+0
+10
+10
+Huellas
 Jack_TouchProof_1.5mm
 
 
@@ -60430,6 +60437,20 @@ SOP65P640X120-8N
 0
 8
 8
+Huellas
+SOT95P285X140-5N
+
+
+0
+5
+5
+Huellas
+SW_PCM12SMTR
+
+
+0
+7
+7
 Huellas
 SW_SKRPABE010
 

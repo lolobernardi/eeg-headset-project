@@ -1074,6 +1074,156 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Jumper:Jumper_2_Open"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "JP"
+				(at 0 2.794 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Jumper_2_Open"
+				(at 0 -2.286 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Jumper, 2-pole, open"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Jumper SPST"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Jumper* TestPoint*2Pads* TestPoint*Bridge*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Jumper_2_Open_0_0"
+				(circle
+					(center -2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Jumper_2_Open_0_1"
+				(arc
+					(start -1.524 1.27)
+					(mid 0 1.778)
+					(end 1.524 1.27)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Jumper_2_Open_1_1"
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "SWButton:SKRPABE010"
 			(pin_names
 				(offset 1.016)
@@ -1729,16 +1879,6 @@
 	)
 	(wire
 		(pts
-			(xy 105.41 68.58) (xy 114.3 68.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0e5cbfff-ec12-4adb-a002-4afd77ddbb90")
-	)
-	(wire
-		(pts
 			(xy 157.48 54.61) (xy 157.48 58.42)
 		)
 		(stroke
@@ -1746,6 +1886,16 @@
 			(type default)
 		)
 		(uuid "0edd97e7-d2b3-416f-8989-d7422562cb09")
+	)
+	(wire
+		(pts
+			(xy 105.41 68.58) (xy 114.3 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12502bbd-4420-4698-869a-0ee65c6f377f")
 	)
 	(wire
 		(pts
@@ -1779,6 +1929,16 @@
 	)
 	(wire
 		(pts
+			(xy 87.63 68.58) (xy 95.25 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "437d1825-c590-429f-93f1-8faf764d081b")
+	)
+	(wire
+		(pts
 			(xy 189.23 83.82) (xy 189.23 85.09)
 		)
 		(stroke
@@ -1809,6 +1969,16 @@
 	)
 	(wire
 		(pts
+			(xy 87.63 73.66) (xy 95.25 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5fbb2b7f-c60c-41dc-a6d1-401cf760aab4")
+	)
+	(wire
+		(pts
 			(xy 154.94 111.76) (xy 157.48 111.76)
 		)
 		(stroke
@@ -1816,6 +1986,16 @@
 			(type default)
 		)
 		(uuid "6c6a4340-a623-44d0-9512-dce4ebec5af1")
+	)
+	(wire
+		(pts
+			(xy 105.41 73.66) (xy 114.3 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "74265448-ae65-4a73-b7b2-81fccec89bd1")
 	)
 	(wire
 		(pts
@@ -1846,16 +2026,6 @@
 			(type default)
 		)
 		(uuid "a56cf7f7-3a37-41d2-892a-551ab9808e0a")
-	)
-	(wire
-		(pts
-			(xy 105.41 73.66) (xy 114.3 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eb04cda0-4a0c-46e2-9461-9b210e25bf28")
 	)
 	(wire
 		(pts
@@ -4069,7 +4239,7 @@
 	)
 	(hierarchical_label "TX_Slave"
 		(shape output)
-		(at 105.41 73.66 180)
+		(at 87.63 73.66 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4080,7 +4250,7 @@
 	)
 	(hierarchical_label "RX_Slave"
 		(shape input)
-		(at 105.41 68.58 180)
+		(at 87.63 68.58 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4784,6 +4954,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Jumper:Jumper_2_Open")
+		(at 100.33 73.66 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d0b3350b-2b05-457b-a708-e5a8f5af0589")
+		(property "Reference" "JP8"
+			(at 99.822 75.946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Jumper_2_Open"
+			(at 99.822 78.486 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 100.33 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 100.33 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Jumper, 2-pole, open"
+			(at 100.33 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6e27dd1b-0b79-4b9b-bda8-d92b1b94d6ad")
+		)
+		(pin "2"
+			(uuid "7486d196-a9d0-4f10-9bd1-a5ecacad5524")
+		)
+		(instances
+			(project "Casco_EEG_Kicad"
+				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/fe171ca0-0165-4621-a7c1-0aa23dfd8c22"
+					(reference "JP8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GNDD")
 		(at 189.23 85.09 0)
 		(unit 1)
@@ -5102,6 +5339,74 @@
 			(project ""
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/fe171ca0-0165-4621-a7c1-0aa23dfd8c22"
 					(reference "S1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Jumper:Jumper_2_Open")
+		(at 100.33 68.58 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fef78cc9-23fc-4754-ae71-c189daa3f82e")
+		(property "Reference" "JP7"
+			(at 100.33 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Jumper_2_Open"
+			(at 100.33 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Jumper, 2-pole, open"
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "fed2e034-19e1-4eb4-bc34-20cdb1351dd5")
+		)
+		(pin "2"
+			(uuid "824ba15a-ca6a-4ebd-9340-6d0acf491a58")
+		)
+		(instances
+			(project "Casco_EEG_Kicad"
+				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/fe171ca0-0165-4621-a7c1-0aa23dfd8c22"
+					(reference "JP7")
 					(unit 1)
 				)
 			)
