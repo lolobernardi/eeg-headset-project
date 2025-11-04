@@ -4773,6 +4773,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC PN" "C14663"
+			(at 175.26 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "7100be09-3e43-4aa3-b8d3-56f8292bcdba")
 		)
@@ -4834,6 +4843,15 @@
 		)
 		(property "Description" "Resistor"
 			(at 167.64 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC PN" "C4190"
+			(at 167.64 83.82 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5573,6 +5591,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
+			(at 182.88 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC PN" "C19702"
 			(at 182.88 55.88 0)
 			(effects
 				(font
