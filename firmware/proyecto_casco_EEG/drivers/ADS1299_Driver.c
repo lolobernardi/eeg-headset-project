@@ -32,7 +32,7 @@ static inline void initializeDefaultChannelSettings(void)
     defaultChannelSettings[GAIN_SET] = ADS_GAIN24;
     defaultChannelSettings[INPUT_TYPE_SET] = ADSINPUT_NORMAL;
     defaultChannelSettings[BIAS_SET] = YES;
-    defaultChannelSettings[SRB2_SET] = YES;
+    defaultChannelSettings[SRB2_SET] = NO;
     defaultChannelSettings[SRB1_SET] = NO;
 }
 
@@ -166,16 +166,18 @@ void ADS1299_WriteDefaultChannelSettings(void)
     updateChannelSettingsToDefault();
     ADS1299_WriteChannelSettings();
 }
-
+/*
 void ADS1299_WriteOneChannelSettings(uint8_t channel)
 {
     uint8_t value = 0;
     value |= (channelSettings[channel - 1][POWER_DOWN] & 0x01U) << 7;
     value |= channelSettings[channel - 1][GAIN_SET] & 0x70U;
+
     if (channelSettings[channel - 1][SRB2_SET] == YES)
-    {
-        value |= 0x08U;
-    }
+		{
+			value |= 0x08U;
+		}
+
     value |= channelSettings[channel - 1][INPUT_TYPE_SET] & 0x07U;
 
     ADS1299_WriteRegister(CH1SET + (channel - 1), value);
@@ -201,7 +203,7 @@ void ADS1299_WriteOneChannelSettings(uint8_t channel)
 
 	setting = ADS1299_ReadRegister(BIAS_SENSN);       //get the current N bias settings
 
-	if(channelSettings[channel-1][BIAS_SET] == YES)
+	if(channelSettings[channel-1][BIAS_SET] == YES && channelSettings[channel-1][SRB1_SET] == NO)
 	{
 		bitSet(setting,channel-1);    //set this channel's bit to add it to the bias generation
 	}
@@ -212,7 +214,241 @@ void ADS1299_WriteOneChannelSettings(uint8_t channel)
 
 	ADS1299_WriteRegister(BIAS_SENSN,setting); //send the modified byte back to the ADS
 	delay_ms(1);
+
+	if(channelSettings[channel-1][SRB1_SET] == YES)
+	{
+		for(uint8_t i=0; i<numChannels ; i++)
+		{
+			channelSettings[i][SRB1_SET] = YES;
+		}
+		setting = 0x20;     // close SRB1 switch
+	}
+	else
+	{
+		for(uint8_t i=0; i<numChannels ; i++)
+		{
+			channelSettings[i][SRB1_SET] = NO;
+		}
+		setting = 0x00;     // open SRB1 switch
+	}
+
+	ADS1299_WriteRegister(MISC1,setting);
 }
+*/
+/*void ADS1299_WriteOneChannelSettings(uint8_t channel)
+{
+    uint8_t value = 0;
+
+    // --- 1. Configuración del registro CHnSET (Gain, Input Type, SRB2, PowerDown) ---
+    value |= (channelSettings[channel - 1][POWER_DOWN] & 0x01U) << 7;
+    value |= channelSettings[channel - 1][GAIN_SET] & 0x70U;
+
+    if (channelSettings[channel - 1][SRB2_SET] == YES)
+    {
+        value |= 0x08U;
+    }
+
+    value |= channelSettings[channel - 1][INPUT_TYPE_SET] & 0x07U;
+
+    ADS1299_WriteRegister(CH1SET + (channel - 1), value);
+
+    // --- 2. Configuración BIAS SENSP (Entradas Positivas) ---
+    // Aquí siempre habilitamos si el usuario quiere Bias, ya que son los electrodos activos.
+    uint8_t setting = 0x00;
+
+    setting = ADS1299_ReadRegister(BIAS_SENSP);        // get the current P bias settings
+
+    if(channelSettings[channel-1][BIAS_SET] == YES)
+    {
+        useInBias[channel-1] = true;
+        bitSet(setting, channel-1);    // set this channel's bit to add it to the bias generation
+    }
+    else
+    {
+        useInBias[channel-1] = false;
+        bitClear(setting, channel-1);  // clear this channel's bit to remove from bias generation
+    }
+
+    ADS1299_WriteRegister(BIAS_SENSP, setting); // send the modified byte back to the ADS
+    delay_ms(1);
+
+    // --- 3. Configuración BIAS SENSN (Entradas Negativas) ---
+    // CORRECCIÓN: Si SRB1 está activo (Monopolar), NO debemos habilitar el bit en SENSN
+    // para evitar retroalimentar la referencia al lazo de Bias.
+
+    setting = ADS1299_ReadRegister(BIAS_SENSN);        // get the current N bias settings
+
+    if((channelSettings[channel-1][BIAS_SET] == YES) && (channelSettings[channel-1][SRB1_SET] == NO))
+    {
+        // Solo agregamos la entrada N al Bias si NO estamos usando SRB1 (es decir, solo en modo Bipolar)
+        bitSet(setting, channel-1);
+    }
+    else
+    {
+        // Si no hay Bias, O SI ESTAMOS USANDO SRB1, limpiamos el bit.
+        bitClear(setting, channel-1);
+    }
+
+    ADS1299_WriteRegister(BIAS_SENSN, setting); // send the modified byte back to the ADS
+    delay_ms(1);
+
+    // --- 4. Configuración Global SRB1 (MISC1) ---
+    if(channelSettings[channel-1][SRB1_SET] == YES)
+    {
+        for(uint8_t i=0; i<numChannels ; i++)
+        {
+            channelSettings[i][SRB1_SET] = YES;
+        }
+        setting = 0x20;     // close SRB1 switch (Connect inputs N to SRB1 pin)
+    }
+    else
+    {
+        for(uint8_t i=0; i<numChannels ; i++)
+        {
+            channelSettings[i][SRB1_SET] = NO;
+        }
+        setting = 0x00;     // open SRB1 switch
+    }
+
+    ADS1299_WriteRegister(MISC1, setting);
+}*/
+
+
+
+
+
+
+
+
+
+void ADS1299_WriteOneChannelSettings(uint8_t channel)
+{
+    uint8_t value = 0;
+
+    // --- 1. Configuración CHnSET (Igual que tu código) ---
+    value |= (channelSettings[channel - 1][POWER_DOWN] & 0x01U) << 7;
+    value |= channelSettings[channel - 1][GAIN_SET] & 0x70U;
+
+    if (channelSettings[channel - 1][SRB2_SET] == YES)
+    {
+        value |= 0x08U; // Cierra switch SRB2 (P inputs)
+    }
+
+    value |= channelSettings[channel - 1][INPUT_TYPE_SET] & 0x07U;
+    ADS1299_WriteRegister(CH1SET + (channel - 1), value);
+
+    // --- 2. Configuración BIAS SENSP (Igual que tu código) ---
+    uint8_t setting_p = ADS1299_ReadRegister(BIAS_SENSP);
+    if(channelSettings[channel-1][BIAS_SET] == YES)
+    {
+        useInBias[channel-1] = true;
+        bitSet(setting_p, channel-1);
+    }
+    else
+    {
+        useInBias[channel-1] = false;
+        bitClear(setting_p, channel-1);
+    }
+    ADS1299_WriteRegister(BIAS_SENSP, setting_p);
+    delay_ms(1);
+
+    // --- 3. Detección de Cambio Global SRB1 ---
+    // Leemos el estado actual REAL del registro MISC1 para ver si va a cambiar
+    uint8_t current_misc1 = ADS1299_ReadRegister(MISC1);
+    bool srb1_was_active = (current_misc1 & 0x20);
+    bool srb1_will_be_active = (channelSettings[channel-1][SRB1_SET] == YES);
+    bool global_srb1_changed = (srb1_was_active != srb1_will_be_active);
+
+    // --- 4. Actualización Global de Variables SRB1 ---
+    // Forzamos la coherencia en el array de configuración
+    uint8_t new_misc1_val = 0x00;
+    if(srb1_will_be_active)
+    {
+        for(uint8_t i=0; i<numChannels ; i++) channelSettings[i][SRB1_SET] = YES;
+        new_misc1_val = 0x20;
+    }
+    else
+    {
+        for(uint8_t i=0; i<numChannels ; i++) channelSettings[i][SRB1_SET] = NO;
+        new_misc1_val = 0x00;
+    }
+
+    // Escribimos MISC1 primero
+    if(global_srb1_changed)
+    {
+        ADS1299_WriteRegister(MISC1, new_misc1_val);
+        delay_ms(1);
+    }
+
+    // --- 5. Configuración BIAS SENSN (Con protección global) ---
+
+    if (global_srb1_changed)
+    {
+        // CASO A: Si SRB1 cambió globalmente, debemos refrescar SENSN de TODOS los canales
+        // para evitar que un canal "antiguo" inyecte SRB1 al Bias.
+        uint8_t bias_sensn_reg = 0x00; // Recalculamos todo el byte desde cero
+
+        for(uint8_t i=0; i<numChannels; i++)
+        {
+            // La misma lógica: Solo incluir en Bias N si BIAS=YES y SRB1=NO
+            if((channelSettings[i][BIAS_SET] == YES) && (channelSettings[i][SRB1_SET] == NO))
+            {
+                bitSet(bias_sensn_reg, i);
+            }
+            // Si SRB1 es YES (que lo es para todos si srb1_will_be_active es true), esto queda en 0. Correcto.
+        }
+        ADS1299_WriteRegister(BIAS_SENSN, bias_sensn_reg);
+    }
+    else
+    {
+        // CASO B: Si SRB1 no cambió globalmente, solo actualizamos el bit de ESTE canal
+        // (Optimización para no escribir en todos los canales si no es necesario)
+        uint8_t setting_n = ADS1299_ReadRegister(BIAS_SENSN);
+
+        if((channelSettings[channel-1][BIAS_SET] == YES) && (channelSettings[channel-1][SRB1_SET] == NO))
+        {
+            bitSet(setting_n, channel-1);
+        }
+        else
+        {
+            bitClear(setting_n, channel-1);
+        }
+        ADS1299_WriteRegister(BIAS_SENSN, setting_n);
+    }
+
+    delay_ms(1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void ADS1299_writeNewChannelSettings(uint8_t* newChannelSettings)
 {
