@@ -489,7 +489,7 @@
       "plot": "Gerbers/",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "Casco_EEG_Kicad.step",
+      "step": "Casco_EEG_VF.step",
       "svg": "",
       "vrml": ""
     },
