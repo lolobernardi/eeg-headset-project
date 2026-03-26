@@ -3672,7 +3672,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "RP0505:RP-0505S"
+		(symbol "REM2A0505:REM2A-0505S"
 			(pin_names
 				(offset 1.016)
 			)
@@ -3680,7 +3680,7 @@
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "PS"
-				(at -10.16 5.842 0)
+				(at -12.7 8.382 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -3688,8 +3688,8 @@
 					(justify left bottom)
 				)
 			)
-			(property "Value" "RP-0505S"
-				(at -10.16 -7.62 0)
+			(property "Value" "REM2A-0505S"
+				(at -12.7 -9.906 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -3697,7 +3697,7 @@
 					(justify left bottom)
 				)
 			)
-			(property "Footprint" "RP-0505S:CONV_RP-0505S"
+			(property "Footprint" "REM2A-0505S:CONV_REM2A-0505S"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3735,7 +3735,7 @@
 					(hide yes)
 				)
 			)
-			(property "MAXIMUM_PACKAGE_HEIGHT" "10.2mm"
+			(property "MAXIMUM_PACKAGE_HEIGHT" "10.7mm"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3765,7 +3765,7 @@
 					(hide yes)
 				)
 			)
-			(property "Check_prices" "https://www.snapeda.com/parts/RP-0505S/Recom+Power/view-part/?ref=eda"
+			(property "Check_prices" "https://www.snapeda.com/parts/REM2A-0505S/Recom+Power/view-part/?ref=eda"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3785,7 +3785,7 @@
 					(hide yes)
 				)
 			)
-			(property "PARTREV" "6/2019"
+			(property "PARTREV" "PRELIMINARY"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3795,7 +3795,7 @@
 					(hide yes)
 				)
 			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/RP-0505S/Recom+Power/view-part/?ref=snap"
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/REM2A-0505S/Recom+Power/view-part/?ref=snap"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3805,7 +3805,7 @@
 					(hide yes)
 				)
 			)
-			(property "MP" "RP-0505S"
+			(property "MP" "REM2A-0505S"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3815,7 +3815,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description_1" "DC-DC Converter, Out 5VDC, In 5VDC, Thru-Hole, Encapsulated, Medical, 1W, 1 | RECOM Power Inc. RP-0505S"
+			(property "Description_1" "2W DC/DC-Converter 'MEDLINE' DIP16 5kV reg 2:1"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3835,7 +3835,7 @@
 					(hide yes)
 				)
 			)
-			(property "MANUFACTURER" "RECOM"
+			(property "MANUFACTURER" "Recom Power"
 				(at 0 0 0)
 				(effects
 					(font
@@ -3845,10 +3845,10 @@
 					(hide yes)
 				)
 			)
-			(symbol "RP-0505S_0_0"
+			(symbol "REM2A-0505S_0_0"
 				(rectangle
-					(start -10.16 -5.08)
-					(end 10.16 5.08)
+					(start -12.7 -7.62)
+					(end 12.7 7.62)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -3858,7 +3858,7 @@
 					)
 				)
 				(pin input line
-					(at -15.24 2.54 0)
+					(at -17.78 5.08 0)
 					(length 5.08)
 					(name "+VIN"
 						(effects
@@ -3867,7 +3867,7 @@
 							)
 						)
 					)
-					(number "1"
+					(number "16"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -3876,9 +3876,9 @@
 					)
 				)
 				(pin input line
-					(at -15.24 -2.54 0)
+					(at -17.78 0 0)
 					(length 5.08)
-					(name "-VIN"
+					(name "CTRL"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -3893,10 +3893,46 @@
 						)
 					)
 				)
+				(pin input line
+					(at -17.78 -5.08 0)
+					(length 5.08)
+					(name "-VIN"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
 				(pin output line
-					(at 15.24 2.54 180)
+					(at 17.78 5.08 180)
 					(length 5.08)
 					(name "+VOUT"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin no_connect line
+					(at 17.78 0 180)
+					(length 5.08)
+					(name "NC"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -3911,8 +3947,27 @@
 						)
 					)
 				)
+				(pin no_connect line
+					(at 17.78 0 180)
+					(length 5.08)
+					(hide yes)
+					(name "NC"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
 				(pin output line
-					(at 15.24 -2.54 180)
+					(at 17.78 -5.08 180)
 					(length 5.08)
 					(name "-VOUT"
 						(effects
@@ -3921,7 +3976,7 @@
 							)
 						)
 					)
-					(number "5"
+					(number "10"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -5267,6 +5322,10 @@
 		(uuid "fb5b9567-c47f-477e-8196-b8a550f177ab")
 	)
 	(no_connect
+		(at 74.93 43.18)
+		(uuid "431287b3-9afd-448f-b717-9c65bc83d936")
+	)
+	(no_connect
 		(at 63.5 102.87)
 		(uuid "6a798c67-f054-4b77-b8c6-15d1cfa1973e")
 	)
@@ -5740,7 +5799,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 52.07) (xy 77.47 58.42)
+			(xy 74.93 48.26) (xy 74.93 54.61)
 		)
 		(stroke
 			(width 0)
@@ -6240,7 +6299,7 @@
 	)
 	(wire
 		(pts
-			(xy 107.95 52.07) (xy 107.95 58.42)
+			(xy 110.49 48.26) (xy 110.49 54.61)
 		)
 		(stroke
 			(width 0)
@@ -11392,7 +11451,7 @@
 		(uuid "82ec20da-d279-4f6b-889b-ca4c3b8273b0")
 	)
 	(label "V_BUSP_NOAISL"
-		(at 77.47 46.99 180)
+		(at 74.93 38.1 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11442,7 +11501,7 @@
 		(uuid "e7c8bd6b-2dde-4ce5-868e-52fa4c75afe6")
 	)
 	(label "V_BUSP"
-		(at 107.95 46.99 0)
+		(at 110.49 38.1 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12439,201 +12498,6 @@
 		)
 	)
 	(symbol
-		(lib_id "RP0505:RP-0505S")
-		(at 92.71 49.53 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "185d59c3-e33a-479a-8b66-ef5702e5ec63")
-		(property "Reference" "PS2"
-			(at 92.71 39.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "RP-0505S"
-			(at 92.71 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Huellas:CONV_RP-0505S"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Recom Power"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "10.2mm"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "None"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/RP-0505S/Recom+Power/view-part/?ref=eda"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" "Manufacturer Recommendations"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" "6/2019"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/RP-0505S/Recom+Power/view-part/?ref=snap"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "RP-0505S"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "DC-DC Converter, Out 5VDC, In 5VDC, Thru-Hole, Encapsulated, Medical, 1W, 1 | RECOM Power Inc. RP-0505S"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "RECOM"
-			(at 92.71 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "5"
-			(uuid "503f4649-4f24-452a-827d-2b0964d8c076")
-		)
-		(pin "7"
-			(uuid "d0e80f57-ff48-4daa-8b6f-2d8917e8119a")
-		)
-		(pin "1"
-			(uuid "b29ea38f-3df0-4ccc-ab98-d44fc140d1ce")
-		)
-		(pin "2"
-			(uuid "8045eeda-faab-4eaf-8ef9-ff90ae7b64a8")
-		)
-		(instances
-			(project ""
-				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/738a2f03-0f5c-435b-af80-cc097a0ed5f5"
-					(reference "PS2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GNDPWR")
 		(at 41.91 111.76 0)
 		(unit 1)
@@ -13224,7 +13088,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDPWR")
-		(at 107.95 58.42 0)
+		(at 110.49 54.61 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13233,7 +13097,7 @@
 		(fields_autoplaced yes)
 		(uuid "473c04ae-a629-4e5d-9e51-bf4b5913872d")
 		(property "Reference" "#PWR056"
-			(at 107.95 63.5 0)
+			(at 110.49 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13242,7 +13106,7 @@
 			)
 		)
 		(property "Value" "GNDPWR"
-			(at 107.823 62.23 0)
+			(at 110.363 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13250,7 +13114,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 107.95 59.69 0)
+			(at 110.49 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13259,7 +13123,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 107.95 59.69 0)
+			(at 110.49 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13268,7 +13132,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDPWR\" , global ground"
-			(at 107.95 58.42 0)
+			(at 110.49 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14143,7 +14007,7 @@
 	)
 	(symbol
 		(lib_id "power:GNDPWR")
-		(at 77.47 58.42 0)
+		(at 74.93 54.61 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -14152,7 +14016,7 @@
 		(fields_autoplaced yes)
 		(uuid "64af1e3b-5863-4b96-a8c4-8872e8d737e2")
 		(property "Reference" "#PWR055"
-			(at 77.47 63.5 0)
+			(at 74.93 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14161,7 +14025,7 @@
 			)
 		)
 		(property "Value" "GNDPWR_NOAISL"
-			(at 77.343 62.23 0)
+			(at 74.803 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14169,7 +14033,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 77.47 59.69 0)
+			(at 74.93 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14178,7 +14042,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 77.47 59.69 0)
+			(at 74.93 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14187,7 +14051,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GNDPWR\" , global ground"
-			(at 77.47 58.42 0)
+			(at 74.93 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -15713,6 +15577,210 @@
 			(project ""
 				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/738a2f03-0f5c-435b-af80-cc097a0ed5f5"
 					(reference "FID1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "REM2A0505:REM2A-0505S")
+		(at 92.71 43.18 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "da58e8f6-d574-4818-b01b-47c6f9bd394f")
+		(property "Reference" "PS3"
+			(at 92.71 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "REM2A-0505S"
+			(at 92.71 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Huellas:CONV_REM2A-0505S"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "Recom Power"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "10.7mm"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/REM2A-0505S/Recom+Power/view-part/?ref=eda"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "PRELIMINARY"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/REM2A-0505S/Recom+Power/view-part/?ref=snap"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "REM2A-0505S"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "2W DC/DC-Converter 'MEDLINE' DIP16 5kV reg 2:1"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Recom Power"
+			(at 92.71 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "16"
+			(uuid "6cbbcad1-339a-4d9b-9b50-49042bfed8b5")
+		)
+		(pin "7"
+			(uuid "47adccfe-8b69-4685-a7fb-0f1502cd5fa3")
+		)
+		(pin "2"
+			(uuid "af660ae5-4d05-4c88-8aea-0f380a1ea4dc")
+		)
+		(pin "8"
+			(uuid "fea6dfcb-7c1c-407c-a4cc-d150cd11048a")
+		)
+		(pin "10"
+			(uuid "b5ceb5a0-24d2-4599-9b95-8750da9f988c")
+		)
+		(pin "9"
+			(uuid "9a6ce2eb-c6c6-4f02-9d58-3dc01c2c0f03")
+		)
+		(pin "1"
+			(uuid "6f7532a4-4979-4660-85fc-988ffe141a69")
+		)
+		(instances
+			(project ""
+				(path "/3414db36-80da-469c-8b48-81d6bd2f8966/738a2f03-0f5c-435b-af80-cc097a0ed5f5"
+					(reference "PS3")
 					(unit 1)
 				)
 			)
